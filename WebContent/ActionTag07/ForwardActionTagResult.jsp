@@ -12,7 +12,6 @@
 		<ul>
 			<li>페이지 영역 : <%=pageContext.getAttribute("pageVar") %></li>
 			<li>리퀘스트 영역 : <%=request.getAttribute("requestVar") %></li>
-			
 		</ul>
 	</fieldset>
 </body>
