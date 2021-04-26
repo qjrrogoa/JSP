@@ -9,3 +9,8 @@ Enumertation
 hasMoreElements() : 읽어올 요소가 있으면 true
 
 nextElement() : 다음 요소를 읽어옴
+
+로그아웃 
+
+session.invalidate();
+
