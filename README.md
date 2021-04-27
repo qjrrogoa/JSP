@@ -37,6 +37,9 @@
 		}
 	}//// close
     
+    	rs.getInt(1)
+        반환값 첫번째 컬럼 수! 	
+	
 # 게시판 작성 프로세스
     
     1. DTO, DAO 객체 만들기
@@ -109,7 +112,24 @@
 
     8.
 
+페이징 방법
+	
+	1. ㅇ
 
+	2. 페이징에 필요한 값들 구하기
+	- 총 등록된 글수
+	- 한 페이지 보여줄 레코드의 개수
+	- 현재 보고 있는 글의 현재 페이지
+	- 전체 페이지 수 구하기
+		int totalpage = int(Math.ceil((double)totalReocrdCount/pageSize));
+		
+		int start = (nowPage-1)*pageSize+1;
+		int end = nowPage*pageSize
+	- 
+
+	3. 글 삭제 순서에 관계없이 순번 구하는 로직
+
+	4. 페이징을 위한 로직
 
 
 post방식 일 때!
