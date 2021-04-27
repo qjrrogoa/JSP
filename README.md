@@ -65,7 +65,7 @@
         반환값 첫번째 컬럼 수! 	
 	
 # InnerObject03
-REQUEST객체
+1] REQUEST객체
 --- 
 	전송방식 : <%=request.getMethod() %></li>
 	전체 URL : <%=request.getRequestURL() %></li>
@@ -105,7 +105,7 @@ REQUEST객체
 		}	
 	}
 	
-JSP문과 자바스크립트 같이 사용하기
+2] JSP문과 자바스크립트 같이 사용하기
 ---
 	<% 
 		if(!"POST".equlas(request.getMethod())){
@@ -119,7 +119,55 @@ JSP문과 자바스크립트 같이 사용하기
 		}
 		return;
 	%>
+3] OUT
+---
+	<%
+	out.println("A");
+	out.flush();
+	out.println("B");
+	out.clearBuffer();
+	out.println("C");
+	%>
+	
+	출력값
+	A
+	C
+	
+	out.print와 out.println 둘 다 똑같이 보여지지만 소스 검사를 할 때 println이 훨씬 깔끔하게 보여진다.
+	
+# InnerObjectScope04
 
+1] pageContext
+---
+	pageContext.getAttribute(String형) 반환값은 Object다.
+	
+	
+	MemberDTO형에 담는 방법 2가지	
+	방법1]
+	Object object = pageContext.getAttribute("String")
+	if(object instanceOf MemberDTO){
+		MemberDTO dto = (MemberDTO)object;
+		firstMemberString=String.format("이름:%s,아이디:%s,비번:%s,나이:%s",
+								dto.getName(),
+								dto.getId(),
+								dto.getPwd(),
+								dto.getAge());	
+	}
+	
+	방법2]
+	MemberDTO second = (MemberDTO)pageContext.getAttribute("String");
+2] request
+---
+	값을 다른페이지에 보낼 때 값을 공유하는 방법
+	포워드, 리다이렉트
+	포워드방식:컨텍스트 루트 제외
+	리다이렉트 방식:컨텍스트 루트 반드시 포함
+	단,server.xml에서 Context태그의 path속성을 빈문자열로 지정시에는 신경 안써도 된다.
+	
+	포워드 
+	request.getRequestDispatcher("페이지").forward(request, response);
+	
+	
 
 # 게시판 작성 프로세스
     
