@@ -1,5 +1,25 @@
 # JSP
 
+# Scripting02
+<%! %>
+---
+    스크립틀릿 
+    선언부에 작성한 자바코드는 서블릿으로 변환시 Class안에 생성됨.
+    즉 멤버변수나 멤버메서드 혹은 상수등을 선언부에서 선언함.
+    하지만 선언한 멤버들은 내장객체를 바로 사용할 수 없다.
+    
+    내장객체를 사용 할 수 있는 방법2가지
+    방법1]
+    멤버변수 선언
+    	JspWriter out;
+	
+    방법2]
+    매개변수로 전달 받는다.
+    void showMessage(String message,JspWriter out)
+<%= %>
+---
+    표현식은 _jspService()메서드 안에서 out.print("EXPRESSION");로 변환 됨
+
 # JDBC 연결 방법
     
     변수 설정]
