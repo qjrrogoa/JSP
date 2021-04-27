@@ -67,18 +67,46 @@
 # InnerObject03
 REQUEST객체
 --- 
-	<ul>
-		<li> 전송방식 : <%=request.getMethod() %></li>
-		<li> 전체 URL : <%=request.getRequestURL() %></li>
-		<li> 도메인을 제외한 URI : <%=request.getRequestURI() %></li>
-		<li> 요청 프로토콜 : <%= request.getProtocol() %></li>
-		<li> 요청 서버명 : <%=request.getServerName() %></li>
-		<li> 요청 서버 포트 : <%=request.getServerPort() %></li>
-		<li> 클라이언트의 IP주소 : <%=request.getRemoteAddr() %>
-		<li> 클라이언트의 IP주소 : <%=request.getRemoteHost() %>
-		<li> 요청과 관련된 세션객체 얻기(서블릿에서 사용-로그인 처리시) <%=request.getSession() %> </li>
-		<li> 세션 내장객체 : <%=session %>
-	</ul>
+	전송방식 : <%=request.getMethod() %></li>
+	전체 URL : <%=request.getRequestURL() %></li>
+	도메인을 제외한 URI : <%=request.getRequestURI() %></li>
+	요청 프로토콜 : <%= request.getProtocol() %></li>
+	요청 서버명 : <%=request.getServerName() %></li>
+	요청 서버 포트 : <%=request.getServerPort() %></li>
+	클라이언트의 IP주소 : <%=request.getRemoteAddr() %>
+	클라이언트의 IP주소 : <%=request.getRemoteHost() %>
+	요청과 관련된 세션객체 얻기(서블릿에서 사용-로그인 처리시) <%=request.getSession() %> </li>
+	세션 내장객체 : <%=session %>
+	Context Path(프로젝트명) : <%=request.getContextPath() %>
+		
+	파라미터값 한 개 일때 
+	request.getParameter("파라미터 값")
+	
+	파라미터값 여러 개 일때(checkbox)
+	request.getParameterValues("파라미터 값")
+	String[] inters = request.getParameterValues("inter");
+	String inter ="";
+	for(String values:inters)
+		inter += values;
+
+	맵으로 모든 파라미터값 받기
+	Map(String,String[]) params = request.getParameterMap();
+	Set<String> paramNames = params.KeySet();
+	for(String paramName:paramNames){
+		if(paramName.equals("inter")){
+			String[] inters=request.getParameterValues(paramName);
+			String paramValues="";
+			for(String code:inters) paramValues+=codeToValue(code)+ " ";
+			out.println("<li>"+paramName+":"+paramValues+"</li>");
+		}
+		else{
+			String paramValue= request.getParameter(paramName);
+			out.println("<li>"+paramName+":"+paramValue+"</li>");
+		}	
+	}
+	
+
+
 # 게시판 작성 프로세스
     
     1. DTO, DAO 객체 만들기
