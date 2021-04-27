@@ -10,8 +10,8 @@
 	<fieldset>
 		<legend>각 영역에 저장된 속성 읽기</legend>
 		<ul>
-			<li>페이지 영역 : <%=pageContext.getAttribute("pageVar") %></li>
-			<li>리퀘스트 영역 : <%=request.getAttribute("requestVar") %></li>
+			<li>페이지 영역:<%=pageContext.getAttribute("pageVar") %></li>
+			<li>리퀘스트 영역:<%=request.getAttribute("requestVar") %></li>
 		</ul>
 	</fieldset>
 </body>

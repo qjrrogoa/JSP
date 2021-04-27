@@ -8,6 +8,8 @@
 	//전체 글 목록 가져오기
 	BBSDao dao = new BBSDao(application,"JSP","JSP");
 	List<BBSDto> list = dao.selectList();
+	
+
 %>
 <!DOCTYPE html>
 <html lang="ko">

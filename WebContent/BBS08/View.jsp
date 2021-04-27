@@ -86,7 +86,7 @@
 								<tr bgcolor="white">
 									<td align="center">내용</td>
 									<td style="padding: 5px"><%=dto.getContent().replace("\r\n","<br/>") %></td> ​
-								</tr>
+                                </tr>
 								<tr bgcolor="white" align="center">
 									<td colspan="2">
 									<% if(dto.getId().equals(session.getAttribute("USER_ID"))) {%>

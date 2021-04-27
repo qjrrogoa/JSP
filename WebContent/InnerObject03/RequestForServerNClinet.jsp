@@ -27,8 +27,7 @@
 	</fieldset>
 	
 	<!-- 
-		JSP에서는 웹 어플리케이션 전체 영역을 Context라 칭함.
-		
+		JSP에서는 웹 어플리케이션 전체 영역을 Context라 칭함
 		getContextPath(): server.xml의 Context태그에 path속성에 지정한 값을 얻어옴.
 		HTML에서 절대경로로 링크를 걸때 주로 사용
 		 -->

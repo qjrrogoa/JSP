@@ -17,7 +17,7 @@
 	BBSDao dao = new BBSDao(application,"JSP","JSP");
 	int affected = dao.update(dto);
 	if(affected == 1){
-		response.sendRedirect("view.jsp?no="+no);
+		response.sendRedirect("View.jsp?no="+no);
 	}
 	else{%>
 	<script>
@@ -26,5 +26,4 @@
 	</script>
 	<%
 	}
-	
 %>

@@ -8,19 +8,19 @@
 </head>
 <body>
 	<fieldset>
-		<legend>forward액션태그 - 마이페이지</legend>
+		<legend>forward액션태그-마이페이지</legend>
 		<h2>세션영역에서 가져오기</h2>
 		<ul>
-			<li>아이디:<%=session.getAttribute("USER_ID") %> </li>
+			<li>아이디:<%=session.getAttribute("USER_ID") %></li>
 			<li>비번:<%=session.getAttribute("USER_PWD") %></li>
 		</ul>
-		
-		<h2>파라미터로 가져오기</h2>
+		<h2>파라미터로 거져오기</h2>
 		<ul>
 			<li>아이디:<%=request.getParameter("user") %></li>
 			<li>비번:<%=request.getParameter("pass") %></li>
 		</ul>
-		<a href="ForwrdExamLogout.jsp">로그아웃</a>
+		<a href="ForwardExamLogout.jsp">로그아웃</a>
 	</fieldset>
+	
 </body>
 </html>

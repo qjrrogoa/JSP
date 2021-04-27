@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%!
+
 	private String getProductName(String code){
-		return code.replace("product","상품");
-	
- 	}
+		return code.replace("product", "상품");
+	}
+
 %>
 <!DOCTYPE html>
 <html>
@@ -14,13 +15,12 @@
 </head>
 <body>
 	<fieldset>
-		<legend>장바구니 예제 : 장바구니에 담은 상품</legend>
+		<legend>장바구니 예제:장바구니에 담은 상품들</legend>
 		<ul>
 			<%
-			Cookie[] cookies = request.getCookies();
-			//상품코드값을 담을 컬렉션
-
-			if(cookies != null){
+			//쿠키값 읽어오기]	
+			Cookie[] cookies = request.getCookies();			
+			if(cookies !=null){
 				for(Cookie cookie : cookies){
 					//쿠키명 얻기]
 					String name = cookie.getName();
@@ -30,11 +30,12 @@
 					if(name.indexOf("product")!=-1){
 						out.println(String.format("<li>%s</li>",getProductName(name)));
 					}
-				}
-			}////if
-			%>
+				}		
+			}////////////if			
+			%>	
 		</ul>
-		<a href="CookieExamIndex.jsp"> 계속 쇼핑하기 </a>
+		<a href="CookieExamIndex.jsp">계속 쇼핑하기</a>
+	
 	</fieldset>
 </body>
 </html>

@@ -78,7 +78,7 @@
 		%>
 		<h3>표현식으로 출력</h3>
 		<!-- 
-		예]<%--="EXPRESSION --%>
+		예]<%--=EXPRESSION --%>
 		
 		표현식은 _jspService()메서드 안에서 
 		out.print("EXPRESSION");로 변환 됨
