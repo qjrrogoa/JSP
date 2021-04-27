@@ -105,6 +105,20 @@ REQUEST객체
 		}	
 	}
 	
+JSP문과 자바스크립트 같이 사용하기
+---
+	<% 
+		if(!"POST".equlas(request.getMethod())){
+	%>
+		<script>
+			alert("잘못된 접근입니다.");
+			history.back(); 혹은 out.println("location.replace(\"ResponseForRedirectIndex.jsp\");");
+
+		</script>
+	<%
+		}
+		return;
+	%>
 
 
 # 게시판 작성 프로세스
