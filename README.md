@@ -334,6 +334,8 @@
 	<jsp:param value="5" name="second">
 	${param.first + param.second} // 15
 	
+3] EL의 기타 내장객체
+---
 	EL은 pageContext객체 밖에 없다.
 	예를들어 내장객체 메서드를  얻어오려면 
 	자바코드
