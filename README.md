@@ -105,6 +105,7 @@
 		}	
 	}
 	
+	
 2] JSP문과 자바스크립트 같이 사용하기
 ---
 	<% 
@@ -134,6 +135,15 @@
 	C
 	
 	out.print와 out.println 둘 다 똑같이 보여지지만 소스 검사를 할 때 println이 훨씬 깔끔하게 보여진다.
+
+4] pageContext 내장객체로 request 내장객체 사용하기
+---
+	request.getMethod()
+	=
+	(ServletRequest > HttpServletRequest 상속 계층도)
+	ServlertRequest req = pageContext.getRequest();
+	String method = ((HttpServletRequest)req).getMethod();
+	
 	
 # InnerObjectScope04
 
