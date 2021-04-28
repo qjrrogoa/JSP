@@ -318,7 +318,9 @@
 	
 2] EL의 내장객체
 ---
-	setAttribute로 다 값을 주어졌다고 가정	
+	setAttribute로 다 값을 주어졌다고 가정
+	
+	getAttirbute 을 이렇게 사용
 	${pageScope.scopeVar}
 	${requestScope.scopeVar}
 	${sessionScope.scopeVar}
