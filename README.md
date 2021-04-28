@@ -144,6 +144,7 @@
 	ServlertRequest req = pageContext.getRequest();
 	String method = ((HttpServletRequest)req).getMethod();
 	
+	잘 사용안한다,, 그래도 알고 있자,
 	
 # InnerObjectScope04
 
@@ -332,7 +333,23 @@
 	<jsp:param value="10" name="first">
 	<jsp:param value="5" name="second">
 	${param.first + param.second} // 15
+	
+	EL은 pageContext객체 밖에 없다.
+	예를들어 내장객체 메서드를  얻어오려면 
+	자바코드
+		[1] <%=request.contextPath%>
+		[2] <%=session.getMaxInactiveInterval()%>
+		[3} <$=request.getSession().getMaxInactiveInterval()%>
+		
+	EL은 (get제외 해도 됨)
+		[1] ${pageContext.request.contextPath} 
+		[2] ${pageContext.session.getMaxInactiveInterval}
+		[3] ${pageContext.request.session.maxInactiveInterval}
+	대신 형 변환은 안해도됨
+	
 
+
+	
 
 post방식 일 때!
 
