@@ -139,8 +139,10 @@
 
 1] pageContext
 ---
-	pageContext.getAttribute(String형) 반환값은 Object다.
+	XX자료형.getAttribute(String형) 반환값은 Object다.
+	XX자료형.getParameter(String형) 반환값은 String이다.
 	
+	내가 생성한 자료형으로 getAttribute값을 얻으려면 변수에 담아야한다.
 	
 	MemberDTO형에 담는 방법 2가지	
 	방법1]
@@ -261,6 +263,65 @@
 	4. 페이징을 위한 로직
 
 	5. 목록을 누르면 페이지 포함된 페이지로 바로 들어가기
+
+#EL09
+
+1] ELOperator
+---
+	기본형식
+	${}
+	
+	EL에서 null이 연산에 참여시 0으로 처리된다.
+	
+	param내장객체 
+	${param}
+	${param.myparam+10}
+	${param["myparam"]+10}
+	${param['myparam']+10}
+	
+	EL에서는 기본적으로 변수 선언 할 수 없다.
+	JSTL로 EL에서 사용할 변수 선언 해야한다.
+	1] <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 선언
+	2] <c:set var="fnum" value="9"> 
+	   <c:set var="snum" value="5">
+	   <c:set var="varInScriptlet" value="<%=varInscriptel"%>
+	 
+	EL의 산술 연살자
+	${fnum+snum}
+	${fnum-snum}
+	${fnum*snum}
+	${fnum/snum}
+	${fnum%snum}
+	${fnum div snum}
+	${fnum mod snum}
+	
+	${"100"+100}  // 200
+	문자열+숫자 하면 문자열 자동으로 형 변환된다.
+	
+	${"Hello"+"EL!!!!"} // 에러
+	숫자연산에만 사용 가능하다. 문자열 연결시 에러
+	
+	EL의 비교 연산자
+	크기 비교 연산자는 compareTo() 메서드로 인식
+	equals()메서드 대신 == 사용한다.
+	
+2] EL의 내장객체
+---
+	setAttribute로 다 값을 주어졌다고 가정	
+	${pageScope.scopeVar}
+	${requestScope.scopeVar}
+	${sessionScope.scopeVar}
+	${applicationScope.scopeVar}
+	XXScope는 생략 가능하다, 생략시 가장 작은 영역에 있는 값을 읽어옴.
+	
+	setAttribute로 저장한 값은 EL에서 바로 사용 가능하다,,?
+	request.setAttribute("stringObject","문자열 객체")
+	${stringObject}
+
+	액션태그 파라미터 값 받기
+	<jsp:param value="10" name="first">
+	<jsp:param value="5" name="second">
+	${param.first + param.second} // 15
 
 
 post방식 일 때!
