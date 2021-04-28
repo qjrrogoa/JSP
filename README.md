@@ -396,6 +396,15 @@
 	map.put("first",first);
 	map.put("second",second);
 	%>
+
+4] EL 라이브러리 만들기
+---
+
+	public static으로 지정
+		
+	web-inf밑에 tlds폴더 생성 후 
+	xml파일로 생성 파일 이름은mytag.tld
+	
 	
 EL로 출력
 <c:set
