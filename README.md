@@ -336,6 +336,8 @@
 	
 3] EL의 기타 내장객체
 ---
+	1] EL의 pageContext
+	
 	EL은 pageContext객체 밖에 없다.
 	예를들어 내장객체 메서드를  얻어오려면 
 	자바코드
@@ -349,6 +351,12 @@
 		[3] ${pageContext.request.session.maxInactiveInterval}
 	대신 형 변환은 안해도됨
 	
+	2] EL의 header
+	요청헤더명에 특수문자가 들어가 있는 경우에는 무조건 [] 사용
+	${header["user-agent"]}
+	${pageContext.request.hederNames}
+	
+	3] EL의 Cookie
 	쿠키값 얻기
 	<% 
 		Cookie cookie = new Cookie("KOSMO","한소인")
@@ -363,7 +371,37 @@
 	JSTL으 이용해서 쿠키 배열 출력
 	<c:forEach var = "cook" items = "${pageContext.request.cookies}"
 		%{cook.name} = ${cook.value}<br/>
-	</c;forEach>
+	</c:forEach>
+	
+	4] EL의 initParam
+	${initparam.ORACLE_URL}
+	${initparam["ORACLE_URL"]}
+	
+	5] EL의 Collection
+
+	<%
+	//데이터 준비
+	MemberDTO first = MemberDTO("KIM","1234","김길동",null,null);
+	MemberDTO second = MemberDTO("LEE","1234","이길동",null,null);
+	
+	//리스트 계열 준비
+	List<MemberDTO> list = new Vector<MemberDTO>();
+	list.add(first);
+	list.add(second);
+	
+	//맵 계열 준비
+	Map<String,MemberDTO> map = new HashMap<String,MemberDTO>();
+	map.put("first",first);
+	map.put("second",second);
+	%>
+	
+EL로 출력
+<c:set
+리스트 계열
+[1] JSTL 미사용
+${}
+	
+	
 	
 
 
