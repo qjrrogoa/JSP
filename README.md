@@ -138,7 +138,7 @@
 
 4] pageContext 내장객체로 request 내장객체 사용하기
 ---
-	request.getMethod()
+	🔥request.getMethod()
 	=
 	(ServletRequest > HttpServletRequest 상속 계층도)
 	ServlertRequest req = pageContext.getRequest();
@@ -171,8 +171,8 @@
 	MemberDTO second = (MemberDTO)pageContext.getAttribute("String");
 2] request
 ---
-	값을 다른페이지에 보낼 때 값을 공유하는 방법
-	포워드, 리다이렉트
+	🔥값을 다른페이지에 보낼 때 값을 공유하는 방법
+	포워드, 리다이렉트, 쿼리스트링
 	포워드방식:컨텍스트 루트 제외
 	리다이렉트 방식:컨텍스트 루트 반드시 포함
 	단,server.xml에서 Context태그의 path속성을 빈문자열로 지정시에는 신경 안써도 된다.
@@ -396,8 +396,153 @@
 	map.put("first",first);
 	map.put("second",second);
 	%>
+	
+	//EL로 출력
+	<c:set var="elList" value="<%=list%>"/>
+	<c:set var="elMap" value="<%=map%>"/>
+	
+	//JSTL 미사용
+	//리스트 계열 켈렉션
+	<li> 이름 : ${elList[0].name} 아이디 : ${elList[0].id} 비번 : ${elList[0].pwd} </li>
+	<li> 이름 : ${elList[1]["name"]} 아이디 : ${elList[1]["id"]} 비번 : ${elList[1]["pwd"]} </li>
+	
+	//JSTL 사용
+	//리스트계열 컬렉션
+	<c:forEach var="item" items="${elList}">
+		<li>이름 : ${item.name} 아이디 : ${item.id} 비번 : ${item.pwd}</li>
+	</c:forEach>
+	
+	//맵 계열 컬렉션
+	<li> 이름 : ${elMap.first.name} 아이디 : ${elMap.first.id} 이름 : ${elMap.first.pwd} </li>
+	<li> 이름 : ${elMap["second"]["name"]} 아이디 : ${elMap["second"]["id"]} 이름 : ${elMap["second"]["pwd"]} </li>
+	
+	//JSTL 사용
+	//맵 계열 컬렉션
+	<c:forEach var="item" items="${elMap}">
+		<li> ${item.key} - 이름 : ${item.value.name} 아이디 : ${item.value.id} 비번 : ${item.value.pwd}
+	</c:forEach>
+	
+	6] EL의 size()
+	<li> ${elList.size()} </li>
+	<li> ${elMap.size()} </li>
+	
+4] EL의 에러
+---
+	1] +를 숫자형식이 아닌 문자열에 적용시 
+	${"백" + 100}
+	${"HELLO" + "HI"}
+	
+	2] 인덱스 형식으로 배열이나 리스트계열 컬렉션의 요소에 접근시(에러)
+	//데이터 준비
+	<%
+	String[] mountains = {"설악산","소백산","비술산","덕유산"}
+	%>
+	${mountains[0]} // 정상
+	${mountains.0} // 에러
+	
+	3] 배열이나 리스트계열 컬렉션의 인덱스를 벗어난 경우 (에러 NO, 출력 NO)
+	${mountains[4]}
+	
+	4] 없는 속성이거나 속성은 존재하지만 getter가 없는 경우(에러)
+	<c:set var="member" value="new MemberDTO("KIM","1234","김길동",null,null)}
+	${member.addr} // 에러
+	${memb.id} // 에러
+	
+	5] 내장객체에 없는 속성으로 접근시
+	
+	6] 숫자를 0으로 나누면 Infinity
+	
+	7] 임의의 변수로 .을 통해서 접근시 - 에러 NO, 출력 NO
 
-4] EL 라이브러리 만들기
+5] EL Set태그
+---
+	<!--
+		🔥
+		var 속성 : 문자열만
+		value 속성 : 값, 표현식, EL식
+		scope 속성 : "page", "request", "session", "application"중 하나
+		
+		🔥target설정 하려면 반드시 set설정 해줘야한다!!!!
+		
+		target 속성 : 표현식, EL식. 	  // 컬렉션 사용할 때 사용
+		property 속성 : 값, 표현식, EL식 // 컬렉션의 키 값이나 변수 명
+	--!>
+	
+	1] set태그로 EL에서 사용할 변수 설정
+	<c:set var="directvar value="100"/> = <% pageContext.setAttribute("directvar","100") %>
+	<%=pageContext.getAttribute("directvar")도 가능하다
+	
+	2] set태그로 자바빈 객체 설정
+	<c:set var="defaultmember" value="<%= new MemberDTO()" scope="request" %>/>
+	<c:set va="argsmember" value="<%= new MemberDTO("KIM","1234","김길동",null,null) %> scope="request"/>
+	
+	//EL로 출력
+	<li> 아이디 : ${defaultmember.id} </li>
+	<li> 비번 : ${defaultmember.pwd} </li>
+	<li> 이름 : ${defaultmember.name} </li>
+	
+	<li> 아이디 : ${argsmember.id} </li>
+	<li> 비번 : ${argsmember.pwd} </li>
+	<li> 이름 : ${argsmember.name} </li>
+	
+	3] target으로 값 할당하기
+	<c:target="${defaultmember}" property="id" value="PARK"/>
+	<c:target="${defaultmember}" property="pwd" value="1234"/>
+	<c:target="${defaultmember}" property="name" value="박길동"/>
+	
+	//EL로 출력
+	<li> 아이디 : ${defaultmember.id} </li>
+	<li> 비번 : ${defaultmember.pwd} </li>
+	<li> 이름 : ${defaultmember.name} </li>
+	
+	4] 리스트 계열
+	//데이터 준비
+	<%
+		List list = new vector();
+		list.add(request.getAttribute("defaultmember"));
+		list.add(request.getAttribute("argsmember"));
+	%>
+	
+	<c:set var="list" value="<%=list%>" scope="request"/>
+	
+	//EL로 출력
+	<li> 아이디 : ${list[0].id} </li>
+	<li> 비번 : ${list[0].pwd} </li>
+	<li> 이름 : ${list[0].name} </li>
+	
+	//target으로 값 변경
+	<c:target="${list[0]}" property="id" value="KOSMO"/>
+	<c:target="${list[0]}" property="pwd" value="7777"/>
+	<c:target="${list[0]}" property="name" value="한소인"/>
+
+
+	5] 맵 게열
+	//데이터 준비
+	<%
+		Map map = new Map();
+		map.put("default",request.getAttribute("defaultmember"));
+		map.put("args",request.getAttribute("argsmember"));
+	%>
+	<c:set var="map" value="<%= map %>" scope="request"/>
+	
+	//EL로 출력
+	<li> 아이디 : ${map.args.id} </li>
+	<li> 비번 : ${map.args.pwd} </li>
+	<li> 이름 : ${map.args.name} </li>
+	
+	//target으로 값 변경
+	<c:target="${map.args}" property="id" value="LEE"/>
+	<c:target="${map.args}" property="pwd" value="9999"/>
+	<c:target="${map.args}" property="name" value="이길동"/>
+
+	
+	
+	<li> 이름 : ${defaultmember.name} </li트
+	<li> 이름 : ${defaultmember.name} </li>
+
+
+
+6] EL 라이브러리 만들기
 ---
 
 	public static으로 지정
