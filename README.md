@@ -347,6 +347,22 @@
 		[3] ${pageContext.request.session.maxInactiveInterval}
 	대신 형 변환은 안해도됨
 	
+	쿠키값 얻기
+	<% 
+		Cookie cookie = new Cookie("KOSMO","한소인")
+		cookie.setPath(request.getContextPath())
+		response.addCookie(cookie)
+	%>
+
+	스크립팅으로 만들어진 Cookie값 읽기
+	${cookie.쿠키명.value}
+	${cookie.KOSMO.value}
+
+	JSTL으 이용해서 쿠키 배열 출력
+	<c:forEach var = "cook" items = "${pageContext.request.cookies}"
+		%{cook.name} = ${cook.value}<br/>
+	</c;forEach>
+	
 
 
 	
