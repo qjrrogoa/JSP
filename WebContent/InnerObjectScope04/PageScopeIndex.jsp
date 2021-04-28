@@ -21,7 +21,6 @@
 	pageContext.setAttribute("pageDate", new Date(new java.util.Date().getTime()));
 	pageContext.setAttribute("pageMemberFirst", new MemberDTO("KIM","1234","김길동",null,"20"));
 	pageContext.setAttribute("pageMemberSecond", new MemberDTO("PARK","1234","박길동",null,"30"));
-
 %>
 <!DOCTYPE html>
 <html>
@@ -44,8 +43,7 @@
 												dto.getPwd(),
 												dto.getAge());
 			}
-			MemberDTO second=(MemberDTO)pageContext.getAttribute("pageMemberSecond");		
-		
+			MemberDTO second=(MemberDTO)pageContext.getAttribute("pageMemberSecond");
 		%>
 		<ul>
 			<li>Integer타입:<%=pageContext.getAttribute("pageInteger") %></li>

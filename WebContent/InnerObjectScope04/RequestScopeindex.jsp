@@ -99,5 +99,5 @@
      - URL주소창에는 리다이렉트된 최종 URL이 보인다.  
      - 절대경로 지정시 반드시 컨텍스트 루트 포함
     */
-	response.sendRedirect(request.getContextPath()+"/InnerObjectScope04/RequestScopeResult.jsp");
+	//response.sendRedirect(request.getContextPath()+"/InnerObjectScope04/RequestScopeResult.jsp");
 %>

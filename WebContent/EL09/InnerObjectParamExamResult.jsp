@@ -34,7 +34,18 @@
 		<ul>
 			<li>이름 : ${param.name}</li>
 			<li>성별 : ${param['gender']}</li>
-			<li>관심사항 : ${inter}</li>
+			<li>관심사항
+			[
+         	<c:forEach items="${paramValues.inter }" var="item" varStatus="loop">
+	            <c:if test="${not loop.last }" var="result">
+	               ${item },
+	            </c:if>
+	            <c:if test="${not result }">
+	               ${item }
+	            </c:if>
+        	</c:forEach>
+        	]
+			</li>
 			<li>학력 : ${param["grade"]}</li>
 		</ul>
 	</fieldset>

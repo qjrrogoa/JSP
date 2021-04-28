@@ -9,7 +9,7 @@
 <body>
 	<fieldset>
 		<legend>사용자 입력값 받기</legend>
-		<form method="post" action="InnerObjectParamExamResult.jsp">
+		<form method="get" action="InnerObjectParamExamResult.jsp">
 			<ul>
 				<li>이름: <input type="text" name="name" /></li>
 				<li>성별: <input type="radio" name="gender" value="남자" />남자 

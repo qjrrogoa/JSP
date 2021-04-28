@@ -28,11 +28,9 @@
 	3]선택 계열인 radio박스나 checkbox등인 경우 미 선택시에는 
 	  null반환(왜냐하면 파라미터가 전달이 안되니까)
 	
-	※name이 같은 form의 하위요소의 값을 받을때는 
+	※ name이 같은 form의 하위요소의 값을 받을때는 
 	   getParameterValues()
-	   단, type="radio"처럼 하나의 이름으로 하나의 값을 전달할
-	
-	  때는 getParameter()로 받아도 된다.
+	   단, type="radio"처럼 하나의 이름으로 하나의 값을 전달할 때는 getParameter()로 받아도 된다.
 	*/
 
 	//파라미터 받기]
@@ -93,10 +91,12 @@
 		<h3>모든 파라미터명 얻기</h3>
 		<!--
 			-request객체의 getParameterNames()메소드로 얻는다
-			-파라미터명 존재 여부판단-->
+			-파라미터명 존재 여부판단
+		-->
+		
 		<ul style="list-style-type: upper-roman;">
 		<%
-			Enumeration<String> names= request.getParameterNames();
+			Enumeration<String> names = request.getParameterNames();
 			while(names.hasMoreElements()){
 				//파라미터명 얻기]
 				String paramName=names.nextElement();
@@ -122,7 +122,7 @@
 			//키값:모든 파라미터명
 			//value:사용자가 입력하거나 선택한 값
 			//getParameterMap():많은 파라미터가 있을때 한꺼번에 받을때 유리
-			Map<String,String[]> params=request.getParameterMap();
+			Map<String,String[]> params = request.getParameterMap();
 			//파라미터명 얻기
 			Set<String> paramNames=params.keySet();
 			for(String paramName : paramNames){
