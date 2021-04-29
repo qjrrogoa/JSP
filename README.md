@@ -605,7 +605,75 @@
 	//기본 형태
 	//test속성에 EL식이 아닌 일반 값을 넣으면 무조건 거짓
 	//단, 일반 값이라도 TRUE(대소문자 상관없이) 경우는 true로 판단 (빈 공백 없어야한다)
-	${c:if test=""}
+	//test는 반드시 EL식 val는 if문 변수 지정
+	
+	${c:if test="조건식" val=""}
+
+8]EL의 ChooseWhenOtherwise태그
+
+	<c:choose>
+		<c:when test="조건식">
+		
+		</c:when>
+		<c:otherwise>
+		
+		</c:otehrwise>
+	<c:choose>
+	
+
+9]EL의 ForEach태그
+---	
+	//기본 식
+	<c:forEach begin=" " end=" " var=" ">
+	</c:forEach>
+	//varStatus
+	<c:forEach begin=" ' end=" " var=" " varStatus="loop">
+		loop.count 속성  1부터 시작한다
+		loop.index 속성  begin값부터 시작
+		loop.first 속성  첫번째 index만 true
+		loop.last 속성   마지막 index만 true
+		loop.current 속성 begin값부터 시작
+	</c:forEach>
+
+	<%
+	//배열 준비
+	String[] colors={"red","green","blue"}
+	
+	//리스트 준비
+	List list = new Vector();
+	list.add(new MemDTO("KIM","1234","김길동",null,null));
+	list.add(new MemDTO("LEE","1234","이길동",null,null));
+	list.add(new MemDTO("PARK","1234","박길동",null,null));
+	
+	//맵 계열 준비
+	Map map = new HashMap();
+	map.put("first",list.get(0));
+	map.put("second",list.get(1));
+	map.put("third",list.get(2));
+	%>
+	
+	//출력 순서는 무조건 셋으로 지정 후 forEach사용
+	//배열 출력
+	<c:set var="colors" value="<%=colors%>"/>
+	<c:forEach var="item" items="${colors}>
+		<h4 style="color:"+${item}>JSP</h4>
+	</c:forEach>
+	
+	//리스트 출력
+	<c:set var="list" value="<%=list%>"/>
+	<c:forEach var="item" items="${list}">
+		<h4> 아이디 : ${item.id} 비번 : ${item.pwd} 이름 : ${item.name} </h4>
+	</c:forEach>
+	
+	//맵 출력
+	<c:set var="map" value="<%=map%>"/>
+	<c:forEach var="item" items="${map}">
+		<h4> 키 : ${item.key} 아이디 : ${item.value.id} 비번 : ${item.value.pwd} 이름 : ${item.value.name}
+	</c:forEach>
+	
+	
+	</c:forEach>ㅊ
+	</c:forEach>
 	
 	
 
