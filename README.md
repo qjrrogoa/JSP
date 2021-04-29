@@ -181,7 +181,57 @@
 	request.getRequestDispatcher("페이지").forward(request, response);
 	
 	
+#Cookie05
 
+1] 쿠키 설정하기
+	
+	<%
+	//1] 쿠키 객체 설정하기 new Cookie("쿠키명","쿠키값")
+	//쿠키명 설정하는 setName()이 없다 반드시 생성자로 쿠키명 설정
+	Cookie cookie = new Cookie("쿠키명","쿠키값");
+	
+	//2] 쿠키가 적용되는 PATH설정
+	cookie.setPath(request.getContextPath()); //"/JSPProj"
+	
+	//3]쿠키 유효기간 설정 - 초단위
+	cookie.setMaxAge(60)
+	/*
+		유효기간 미 설정시 쿠키는 웹브라우저에 저장됨
+		- 웹브라우저 닫을 때 삭제됨
+
+		유효기간 설정시 쿠키는 사용자의 PC에 저장됨.
+		- 유효기간이 지나면 자동으로 삭제됨 
+	*/
+
+	//4] 생성된 쿠키를 응답헤더에 설정 : addCookie()
+	response.addCookie(cookie);
+	
+	//5] 쿠키값 읽기
+	Cookie[] cookies = request.getCookies();
+	
+	if(cookies != null){
+		for(Cookie cook:cookies{
+			String name = cook.getName();
+			String value = cook.getValue();
+			out.println(String.format("%s : %s",name,value));
+		}
+	}
+	%>
+
+# ActionTag07
+
+1] include지시어와 액션태그
+---
+	include 지시어와 액션 태그 비교
+	//지시어는 
+	표현식 사용 불가, 소스 그대로 해당 위치에 포함됨
+	페이지는 현재 페이지와 같은 페이지를 의미
+	
+	//액션태그
+	표현식 사용 가능, JSP컨테이너에 의해 실행된 결과가 해당 위치에 포함됨
+	서로 다른 페이지의미, request영역 공유
+	
+	
 # 게시판 작성 프로세스
     
     1. DTO, DAO 객체 만들기
@@ -542,38 +592,18 @@
 
 
 
-6] EL 라이브러리 만들기
+6] EL의 remove
 ---
-
-	public static으로 지정
-		
-	web-inf밑에 tlds폴더 생성 후 
-	xml파일로 생성 파일 이름은mytag.tld
+	<c:remove var="request" scope="request"/>
+	//scope 미 지정시 동일한 속성명 모두 삭제한다.
+	
+7]EL의 IF태그
+---
+	//if 이외 else if, else는 없다
+	//기본 형태
+	//test속성에 EL식이 아닌 일반 값을 넣으면 무조건 거짓
+	//단, 일반 값이라도 TRUE(대소문자 상관없이) 경우는 true로 판단 (빈 공백 없어야한다)
+	${c:if test=""}
 	
 	
-EL로 출력
-<c:set
-리스트 계열
-[1] JSTL 미사용
-${}
-	
-	
-	
-
-
-	
-
-post방식 일 때!
-
-request.setCharacterEncoding("UTF-8");
-
-Enumertation
-
-hasMoreElements() : 읽어올 요소가 있으면 true
-
-nextElement() : 다음 요소를 읽어옴
-
-로그아웃 
-
-session.invalidate();
 
