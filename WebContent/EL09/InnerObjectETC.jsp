@@ -85,7 +85,7 @@
 		 
 		 <!-- 
 		 	cookie.쿠키명.value로 쿠키명에 해당하는 쿠키값을 얻을 수 있다.
-		  -->
+		 -->
 		  ${cookie.KOSMO.value} : ${cookie.KOSMO.value }<br/>
 		  \${pageContext.request.cookies } : ${pageContext.request.cookies }
 		  

@@ -208,8 +208,5 @@ JSTL사용]
 	    </ul>
 	</fieldset>
 	
-	<jsp:forward page="SetTagResult.jsp">
-			<jsp:param value="android" name="subject"/>
-	</jsp:forward>
 </body>
 </html>

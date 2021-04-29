@@ -8,10 +8,7 @@
 
 <%
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	String dateString = dateFormat.format(new Date());
-	
-	
-	
+	String dateString = dateFormat.format(new Date());	
 %>
 <!DOCTYPE html>
 <html>
@@ -42,6 +39,8 @@
 			<input type="submit" value="결과는"/>
 			<span style="color:green;font-size: 1.4em;font-weight: bold">${result}</span>
 		</form>
+		${money }
+		
 	</fieldset>
 </body>
 </html>

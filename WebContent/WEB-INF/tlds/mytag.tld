@@ -24,5 +24,24 @@
     	java.lang.String getGender(java.lang.String)
     </function-signature>
   </function>
- 
+  
+  <function>    
+    <name>isMember</name>
+    <function-class>eltag.MyTagLib</function-class>
+    <function-signature>
+    	boolean isMember(javax.servlet.ServletContext,java.lang.String,java.lang.String)
+    </function-signature>    
+  </function
+  
+  ><function>    
+    <name>selectList</name>
+    <function-class>eltag.MyTagLib</function-class>
+    <function-signature>
+    	java.util.List selectList(javax.servlet.ServletContext,int,int)
+    </function-signature>    
+  </function>
+  
+  
+  
+  
  </taglib>

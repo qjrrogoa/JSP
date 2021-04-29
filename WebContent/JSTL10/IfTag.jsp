@@ -65,6 +65,33 @@
 			100은 참이다. <br/>
 		</c:if>
 		\${result } : ${result }<br/>
+		
+		<c:if test="100>10" var="reusl">
+			100>10는 참이다<br/>
+		</c:if>
+		
+		<h2>EL로 조건 설정시 \${}바깥 양쪽에 공백이 있으면 조건이 참이더라도 무조건 거짓</h2>
+		<c:if test="${100>10 }" var="result">
+			100>10는 참이다.<br/>
+		</c:if>
+		\${result } : ${result }<br/>
+
+		 <h2>if태그 연습</h2>
+		<!-- 
+			문]파라미터로 아이디(user)와 비밀번호(pass)를 받아서
+			아이디가 "KIM"이고 비밀번호가 "1234"인 경우 회원이라고 가정하자.
+			회원인 경우 "\${EL로 출력}님 즐감하세요." 출력
+			비회원인 경우 "아뒤와 비번이 틀려요" 출력
+			단,EL과 JSTL만 사용해서 구현해라
+		 -->
+		 <c:if test="${! empty param.user && ! empty param.pass  }">
+			 <c:if test="${param.user  == 'KIM' and param.pass=='1234'}" var="result">
+			 	${param.user }님 즐감하세요
+			 </c:if>
+			 <c:if test="${not result }">
+			 	"아뒤와 비번이 틀려요"
+			 </c:if>
+		 </c:if>
 	</fieldset>
 </body>
 </html>

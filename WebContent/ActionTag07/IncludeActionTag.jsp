@@ -3,8 +3,7 @@
 <!-- 
 ※include지시어의 file속성과
  include액션태그의 page속성에
- 절대경로로 페이지 포함시에는 Context 루트 제외한
- 경로.
+ 절대경로로 페이지 포함시에는 Context 루트 제외한 경로.
  단,server.xml의 Context엘리먼트의 path속성을 ""으로
  설정시에는 request.getContextPath()로 해도 상관없다.
  
@@ -18,8 +17,7 @@
 
   include 지시어를 사용한 페이지 include(포함)]
     -소스 그대로 해당 위치에 포함됨
-    -include지시어를 통해 포함된 페이지는 현재 페이지와 같은
-          페이지를 의미
+    -include지시어를 통해 포함된 페이지는 현재 페이지와 같은 페이지를 의미
  include 액션태그를 사용한 페이지 include(포함)]
     -JSP컨테이너에 의해 실행된 결과가  해당 위치에 포함됨
     -서로 다른 페이지를 의미
@@ -43,10 +41,15 @@
 <body>
 	<fieldset>
 		<legend>include지시어와 &lt;jsp:include&gt;액션태그</legend>
+		<h2> 지금 보고있는 페이지 </h2>
+		<li>페이지 영역:<%=pageContext.getAttribute("pageVar") %></li>
+		<li>리퀘스트 영역:<%=request.getAttribute("requestVar") %></li>
+		
 		<h2>include지시어로 페이지 삽입하기</h2>
 		<!-- file속성에 표현식 사용불가 -->
 		<%--@ include file="<%=directivePath --%>
 		<%@ include file="DirectivePage.jsp" %>
+		
 		<h2>include액션태그로 페이지 삽입하기</h2>
 		<!-- page속성에 표현식 가능 -->
 		<jsp:include page="<%=actionPath %>"/>
