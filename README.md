@@ -513,7 +513,8 @@
 	
 	7] 임의의 변수로 .을 통해서 접근시 - 에러 NO, 출력 NO
 
-5] EL Set태그
+#JSTL10
+1] JSTL Set태그
 ---
 	<!--
 		🔥
@@ -594,12 +595,12 @@
 	<c:target="${map.args}" property="pwd" value="9999"/>
 	<c:target="${map.args}" property="name" value="이길동"/>
 
-6] EL의 remove
+2] JSTL의 remove
 ---
 	<c:remove var="request" scope="request"/>
 	//scope 미 지정시 동일한 속성명 모두 삭제한다.
 	
-7]EL의 IF태그
+3] JSTL의 IF태그
 ---
 	//if 이외 else if, else는 없다
 	//기본 형태
@@ -609,8 +610,8 @@
 	
 	${c:if test="조건식" val=""}
 
-8]EL의 ChooseWhenOtherwise태그
-
+4] JSTL의 ChooseWhenOtherwise태그
+---
 	<c:choose>
 		<c:when test="조건식">
 		
@@ -621,7 +622,7 @@
 	<c:choose>
 	
 
-9]EL의 ForEach태그
+5] JSTL의 ForEach태그
 ---	
 	//기본 식
 	<c:forEach begin=" " end=" " var=" ">
@@ -671,7 +672,8 @@
 		<h4> 키 : ${item.key} 아이디 : ${item.value.id} 비번 : ${item.value.pwd} 이름 : ${item.value.name}
 	</c:forEach>
 
-10] EL의 forTokensTag
+6] JSTL의 forTokensTag
+---
 	
 	//자바 forTokenTag
 	//split하는거다!
@@ -697,4 +699,69 @@
 	<c:forTokens var="color" items="${colors}" delims=",">
 		<h4 style="color:${color}">${color}</h4>
 	<c:forTokens>
+	
+7] JSTL의 import태그
+---
+	
+	//var 속성 미지정시 include 액션태그와 같다.
+	//외부에 있는 컨텐츠 삽입도 가능하다.
+	
+	<c:import url=""/>
+	==
+	<jsp:include page="">
+	
+	<c:import url="">
+		<c:param name="user" value="PARK"/>
+		<c:param name="pass" value="1234"/>
+	</c:import>
+	
+	//var 속성 지정. 원하는 위치에 삽입하고자 할 떄
+	<c:import url="" var=""/>
+	
+	
+8] JSTL의 redirect방식
+---
+	
+	//response.sendRedirect랑
+	//공통점은 request영역 공유 안한닫
+	//차이점은 컨텍스트 루트를 포함 안해도됨
+	
+	<c:redirect url="">
+		<c:param name="user" value="PARK"/>
+		<c:param name="pass" value="1234"/>
+	</c:redirect>
+	
+	//다른 어플안에 있는 페이지로 가고 싶을 시 context속성 사용
+	<c:redirect context"/" url="/">
+	
+9] JSTL의 OUT
+---
 
+	//null이거나 param이 없을 경우 default값을 설정 할 수 있다.
+	<c:out value="">
+	==
+	<c:set var ="" value="">
+
+	//excapeXml 속성 
+	//false가 디폴트값이고 false면 EL이랑 같고 
+	//true 설정시 HTML태그가 그대로 문자열로 출력
+	
+	//default속성
+	<c:out value=" " default=""/>
+	
+10] JSTL의 url태그
+
+	//url태그 사용시 컨텍스트 루트 신경 쓸 필요 없다. 
+	//url 파라미터가 쿼리스트링으로 연결됨!
+	<c:uri value="페이지"/>
+	
+	//var속성시 내가 원하는 위치에 url 출력 된다.
+	
+
+	
+	
+	
+	
+	
+	
+	
