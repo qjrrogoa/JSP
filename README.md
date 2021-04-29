@@ -653,27 +653,48 @@
 	%>
 	
 	//출력 순서는 무조건 셋으로 지정 후 forEach사용
-	//배열 출력
+	//1]배열 출력
 	<c:set var="colors" value="<%=colors%>"/>
 	<c:forEach var="item" items="${colors}>
 		<h4 style="color:"+${item}>JSP</h4>
 	</c:forEach>
 	
-	//리스트 출력
+	//2]리스트 출력
 	<c:set var="list" value="<%=list%>"/>
 	<c:forEach var="item" items="${list}">
 		<h4> 아이디 : ${item.id} 비번 : ${item.pwd} 이름 : ${item.name} </h4>
 	</c:forEach>
 	
-	//맵 출력
+	//3]맵 출력
 	<c:set var="map" value="<%=map%>"/>
 	<c:forEach var="item" items="${map}">
 		<h4> 키 : ${item.key} 아이디 : ${item.value.id} 비번 : ${item.value.pwd} 이름 : ${item.value.name}
 	</c:forEach>
+
+10] EL의 forTokensTag
 	
+	//자바 forTokenTag
+	//split하는거다!
+	<%
+	//데이터 준비
+	String colors = "red,green,blue"
 	
-	</c:forEach>ㅊ
-	</c:forEach>
+	//1]String 클래스
+	for(String color : colors.split(","){
+		out.println("<h4 style='color:"+color+"'>"+color+"</h4>")
+	}
 	
+	//2] StringTokenizer 클래스
+	StringTokenizer tokenizer = new StringTokenizer(colors,",");
+	while(tokenizer.hasMoreToken()){
+		String color = tokenizer.nextToken();
+		out.println("<h4 style='color:"+color+"'>"+color+"</h4>")
+	}
+	%>
 	
+	//3]JSTL의 forTokens태그
+	<c:set var="colors" value="<%=colors$>">
+	<c:forTokens var="color" items="${colors}" delims=",">
+		<h4 style="color:${color}">${color}</h4>
+	<c:forTokens>
 
