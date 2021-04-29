@@ -222,7 +222,7 @@
 
 1] include지시어와 액션태그
 ---
-	include 지시어와 액션 태그 비교
+	1] include 지시어와 액션 태그 비교
 	//지시어는 
 	표현식 사용 불가, 소스 그대로 해당 위치에 포함됨
 	페이지는 현재 페이지와 같은 페이지를 의미
@@ -231,6 +231,15 @@
 	표현식 사용 가능, JSP컨테이너에 의해 실행된 결과가 해당 위치에 포함됨
 	서로 다른 페이지의미, request영역 공유
 	
+	2] usebean 사용
+	<jsp:useBean id="member" class="model.MemberDTO" scope="request"/>
+	==
+	MemberDTO member = new MemberDTO(); //기본 생성자로 생성한다는 뜻
+	
+	//값 할당
+	<jsp:setProperty name ="member" property="id" value="KIM">
+	<jsp:setProperty name ="member" property="pwd" value="9999">
+	<jsp:setProperty name ="member" property="name" value="김길동">
 	
 # 게시판 작성 프로세스
     
@@ -329,25 +338,25 @@
 
 1] ELOperator
 ---
-	기본형식
+	1] 기본형식
 	${}
 	
 	EL에서 null이 연산에 참여시 0으로 처리된다.
 	
-	param내장객체 
+	2] param내장객체 
 	${param}
 	${param.myparam+10}
 	${param["myparam"]+10}
 	${param['myparam']+10}
 	
-	EL에서는 기본적으로 변수 선언 할 수 없다.
+	3] EL에서는 기본적으로 변수 선언 할 수 없다.
 	JSTL로 EL에서 사용할 변수 선언 해야한다.
 	1] <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 선언
 	2] <c:set var="fnum" value="9"> 
 	   <c:set var="snum" value="5">
 	   <c:set var="varInScriptlet" value="<%=varInscriptel"%>
 	 
-	EL의 산술 연살자
+	4] EL의 산술 연살자
 	${fnum+snum}
 	${fnum-snum}
 	${fnum*snum}
@@ -362,13 +371,13 @@
 	${"Hello"+"EL!!!!"} // 에러
 	숫자연산에만 사용 가능하다. 문자열 연결시 에러
 	
-	EL의 비교 연산자
+	5] EL의 비교 연산자
 	크기 비교 연산자는 compareTo() 메서드로 인식
 	equals()메서드 대신 == 사용한다.
 	
 2] EL의 내장객체
 ---
-	setAttribute로 다 값을 주어졌다고 가정
+	1] setAttribute로 다 값을 주어졌다고 가정
 	
 	getAttirbute 을 이렇게 사용
 	${pageScope.scopeVar}
@@ -377,11 +386,11 @@
 	${applicationScope.scopeVar}
 	XXScope는 생략 가능하다, 생략시 가장 작은 영역에 있는 값을 읽어옴.
 	
-	setAttribute로 저장한 값은 EL에서 바로 사용 가능하다,,?
+	2] setAttribute로 저장한 값은 EL에서 바로 사용 가능하다,,?
 	request.setAttribute("stringObject","문자열 객체")
 	${stringObject}
 
-	액션태그 파라미터 값 받기
+	3] 액션태그 파라미터 값 받기
 	<jsp:param value="10" name="first">
 	<jsp:param value="5" name="second">
 	${param.first + param.second} // 15
@@ -584,13 +593,6 @@
 	<c:target="${map.args}" property="id" value="LEE"/>
 	<c:target="${map.args}" property="pwd" value="9999"/>
 	<c:target="${map.args}" property="name" value="이길동"/>
-
-	
-	
-	<li> 이름 : ${defaultmember.name} </li트
-	<li> 이름 : ${defaultmember.name} </li>
-
-
 
 6] EL의 remove
 ---
