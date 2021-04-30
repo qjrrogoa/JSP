@@ -750,7 +750,7 @@
 	<c:out value=" " default=""/>
 	
 10] JSTL의 url태그
-
+---
 	//url태그 사용시 컨텍스트 루트 신경 쓸 필요 없다. 
 	//url 파라미터가 쿼리스트링으로 연결됨!
 	<c:uri value="페이지"/>
@@ -758,10 +758,33 @@
 	//var속성시 내가 원하는 위치에 url 출력 된다.
 	
 
-	
+11] JSTL 국제화 태그
+---
+	// 필수 속성 : value
+	// type속성의 기본값 : number (currency, percent)
+	// groupingUsed 속성의 기본값 : true(1000단위로 콤마를 찍는다)
+	// currencySymbol 속성의 기본값 : 원
+
+	<c:set var="money" value="10000"/>
+	${money} //10000
+	<fntLformatNumber value="${money}"/> //10,000
+	<fntLformatNumber value="${money}" froupingUsed="false"/> //10000
+	<fntLformatNumber value="${money}" type="currency"/> // ₩10000
+	<fntLformatNumber value="${money}" type="currency" currecySymbol="$"/> // $10000
 
 
 12] formatDateTime
+---
+	//필수 속성 value 단, 날짜타입이 와야 됨
+	//type속성의 기본값 : date(time,both속성 있다.)
+	//dateStyle 기본값 : default (short, medium,long,full)
+	
+	<c:set var="today" value="<%=new Date()%>"/>
+	<fmt:formatDate value="${today}"/>
+	<fmt:formatDate value="${today}" type="time"/>
+	
+	//주로 패턴을 사용한다
+	<fmt:formatDate value="${today}" pattern="yyyy년 MM월 DD일 a HH:mm:ss"/>
 	
 	
 	
