@@ -743,7 +743,7 @@
 	<c:set var ="" value="">
 
 	//excapeXml 속성 
-	//false가 디폴트값이고 false면 EL이랑 같고 
+	//true 디폴트값이고 false면 EL이랑 같고 
 	//true 설정시 HTML태그가 그대로 문자열로 출력
 	
 	//default속성
