@@ -23,6 +23,7 @@
 												dto.getAge());
 			}
 			MemberDTO second=(MemberDTO)pageContext.getAttribute("pageMemberSecond");		
+		
 		%>
 		<ul>
 			<li>Integer타입:<%=pageContext.getAttribute("pageInteger") %></li>

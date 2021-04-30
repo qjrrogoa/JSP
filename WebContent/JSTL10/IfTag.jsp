@@ -84,14 +84,12 @@
 			비회원인 경우 "아뒤와 비번이 틀려요" 출력
 			단,EL과 JSTL만 사용해서 구현해라
 		 -->
-		 <c:if test="${! empty param.user && ! empty param.pass  }">
-			 <c:if test="${param.user  == 'KIM' and param.pass=='1234'}" var="result">
-			 	${param.user }님 즐감하세요
-			 </c:if>
-			 <c:if test="${not result }">
-			 	"아뒤와 비번이 틀려요"
-			 </c:if>
-		 </c:if>
+		<c:if test="${param.user == 'KIM' && param.pass=='1234'}" var="result">
+			${param.user}님 즐감하세요.~~
+		</c:if>
+		<c:if test="${!result }">
+			아뒤 비번이 틀려요!!
+		</c:if>
 	</fieldset>
 </body>
 </html>

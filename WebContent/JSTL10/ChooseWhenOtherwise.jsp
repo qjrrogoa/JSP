@@ -67,33 +67,31 @@
 			<c:set var="kor" value="${param.kor }"/>
 			<c:set var="eng" value="${param.eng }"/>
 			<c:set var="math" value="${param.math }"/>
-			<c:if test="${! empty kor }">
-				<!-- 숫자인지 체크 -->	
-				<c:if test="${my:isNumber(kor) && my:isNumber(eng) && my:isNumber(math) }" var="result">
-					<!-- 평균 저장 -->
-					<c:set var="avg" value="${(kor+eng+math)/3 }"/>
-					<c:choose>
-						<c:when test="${avg>=90 }">
-							A학점
-						</c:when>
-						<c:when test="${avg>=80 }">
-							B학점
-						</c:when>
-						<c:when test="${avg>=70 }">
-							C학점
-						</c:when>
-						<c:when test="${avg>=60 }">
-							D학점
-						</c:when>
-						<c:otherwise>
-							F학점
-						</c:otherwise>						
-					</c:choose>					
-				</c:if>
-				<c:if test="${! result }">
-					<span style="color:red;font-size:2em">점수는 숫자만...</span>				
-				</c:if>
+			<c:set var="avg" value="${(kor+eng+math)/3 }"/>
+			
+			<c:if test="${empty kor && empty eng && empty math }" var="result">
+			
 			</c:if>
+			<c:if test="${!result }">
+				<c:choose>
+					<c:when test="${avg >= 90 }">
+						A학점
+					</c:when>
+					<c:when test="${avg >= 80 }">
+						B학점
+					</c:when>
+					<c:when test="${avg >= 70 }">
+						C학점
+					</c:when>
+					<c:when test="${avg >= 60 }">
+						D학점
+					</c:when>
+					<c:otherwise>
+						F학점
+					</c:otherwise>
+				</c:choose>
+			</c:if>
+		
 		
 		</fieldset>
 		

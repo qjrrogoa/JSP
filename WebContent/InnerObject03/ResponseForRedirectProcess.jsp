@@ -10,6 +10,7 @@
 		history.back();			
 	</script>
 <%
+		
 		return;
 	}
 	/*
@@ -36,8 +37,8 @@
 		//response.sendRedirect(request.getContextPath()+"/InnerObject03/ResponseForMyPage.jsp?id="+id+"&pwd="+pwd);
 		%>
 		<form method="post" action="ResponseForMyPage.jsp">
-			<input type="hidden" name="id" value="<%=id%>"/>
-			<input type="hidden" name="pwd" value="<%=pwd%>"/>
+			<input type="hidden"  name="id" value="<%=id%>"/>
+			<input type="hidden"  name="pwd" value="<%=pwd%>"/>
 		</form>
 		<script>
 			alert("<%=id%>님 반갑습니다");

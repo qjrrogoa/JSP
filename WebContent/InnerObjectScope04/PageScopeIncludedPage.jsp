@@ -9,5 +9,3 @@
 	<li>MemberDTO타입 1:<%=firstMemberString%></li>
 	<li>MemberDTO타입 2:<%=second%></li>
 </ul>
-
-

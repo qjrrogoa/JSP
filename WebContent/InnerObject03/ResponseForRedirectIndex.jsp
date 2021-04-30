@@ -13,11 +13,15 @@
 			<table cellspacing="1" bgcolor="gray">
 				<tr bgcolor="white">
 					<td>아이디</td>
-					<td><input style="width: 200px; height: 20px; border: 1px red solid" type="text" name="id" /></td>
+					<td><input
+						style="width: 200px; height: 20px; border: 1px red solid"
+						type="text" name="id" /></td>
 				</tr>
 				<tr bgcolor="white">
 					<td>비밀번호</td>
-					<td><input style="width: 200px; height: 20px; border: 1px red solid" type="password" name="pwd" /></td>
+					<td><input
+						style="width: 200px; height: 20px; border: 1px red solid"
+						type="password" name="pwd" /></td>
 				</tr>
 				<tr bgcolor="white" align="center">
 					<td colspan="2"><input type="submit" value="로그인" /></td>

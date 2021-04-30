@@ -77,6 +77,12 @@
   	</taglib>
   </jsp-config>
   
+  <!--  커넥션 풀 사용하기 위한 JNDI루트 등록 -->
+  <context-param>
+  	<param-name>JNDI_ROOT</param-name>
+  	<param-value>java:comp/env</param-value>
+  </context-param>
+  
   <welcome-file-list>
   	<welcome-file>HelloWorld.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>

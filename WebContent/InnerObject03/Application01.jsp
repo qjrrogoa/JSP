@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%!
+
 	//[선언부에서 물리적 경로 얻는 방법들]
 	//1]this키워드 사용
 	private String getRealPath(){
