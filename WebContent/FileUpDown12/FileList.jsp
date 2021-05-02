@@ -1,10 +1,6 @@
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-File f = new File("C:/LJH/Workspace/Java/JavaBasicApp/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/JSPProj/Upload");
-File[] files=f.listFiles();
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +9,16 @@ File[] files=f.listFiles();
 </head>
 <body>
 	<fieldset>
-		<legend>업로드된 파일 목록</legend>
+		<legend>업로된 파일 목록</legend>
 		<ul>
 			<%
-			for(File file:files) {
+			String saveDirectory= application.getRealPath("/Upload");
+			File  file = new File(saveDirectory);
+			File[] files=file.listFiles();
+			for(File f:files){
 			%>
-			<li>파일명 :<a href="Download.jsp?filename=<%=file.getName() %>"><%=file.getName() %></a> , 파일크기 :<%=(int)Math.ceil(file.length()/1024.0) %> KB </li>
-			<% } %>
+			<li>파일명:<a href="Download.jsp?filename=<%=f.getName() %>"><%=f.getName() %></a> ,파일 크기:<%=(int)Math.ceil(f.length()/1024.0) %>KB</li>
+			<%}//for %>
 		</ul>
 	</fieldset>
 </body>

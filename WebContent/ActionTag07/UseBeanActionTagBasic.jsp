@@ -55,5 +55,6 @@
 			<li>이름:<%=member.getName() %> </li>
 		</ul>
 	</fieldset>
+	<jsp:forward page="UseBeanActionTagForward.jsp"/>
 </body>
 </html>

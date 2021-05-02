@@ -9,17 +9,16 @@
 	//1]파라미터(키값) 받기
 	String no = request.getParameter("no");
 	//현재 페이지번호 받기
-		String nowPage = request.getParameter("nowPage");
-
-	//검색과 관련된 파라미터 받기 
-		String searchColumn = request.getParameter("searchColumn");
-		String searchWord = request.getParameter("searchWord");
-		String queryString="";//검색용 쿼리 스트링
-		
-		if(searchColumn != null){
-		//검색시 생성된 페이징번호 클릭시 처리하기 위한 추가 쿼리스트링
-		queryString=String.format("searchColumn=%s&searchWord=%s&",searchColumn,searchWord);
-		}
+	String nowPage = request.getParameter("nowPage");
+	//검색과 관련된 파라미터 받기]
+	String searchColumn = request.getParameter("searchColumn");
+	String searchWord   = request.getParameter("searchWord");
+	String queryString="";//검색용 쿼리 스트링
+	
+	if(searchColumn !=null){				
+		queryString=String.format("searchColumn=%s&searchWord=%s&", searchColumn,searchWord);
+	}//////////////
+			
 
 	//2]CRUD작업용 BbsDAO생성
 	BBSDao dao = new BBSDao(application,"JSP","JSP");
@@ -28,7 +27,7 @@
 	int beginIndex=referer.lastIndexOf("/")+1;
 	String prevPage = referer.substring(beginIndex);
 	//조회수 업데이트 및 상세보기
-	BBSDto dto = dao.selectOne(no,prevPage);
+	BBSDto dto= dao.selectOne(no,prevPage);
 	//이전글/다음글 조회
 	Map<String,BBSDto> map= dao.prevNext(no);
 	dao.close();
@@ -38,12 +37,15 @@
 <head>
 <meta charset="UTF-8">
 <title>View.jsp</title>
-<link href="<%=request.getContextPath()%>/Styles/divLayout.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/Styles/divLayout.css"
+	rel="stylesheet" />
 	<script>
 		var isDelete = function(){
 			if(confirm("정말로 삭제하시겠습니까?"))
 				location.replace("Delete.jsp?<%=queryString%>no=<%=dto.getNo() %>&nowPage=<%=nowPage%>");
+			
 		};
+	
 	</script>
 </head>
 <body>

@@ -7,22 +7,22 @@
   <description>MyTag library</description>
   <display-name>My functions</display-name>
   <tlib-version>1.0</tlib-version>
-  <short-name>my</short-name>
+  <short-name>my</short-name>  
 
-  <function>
+  <function>    
     <name>isNumber</name>
     <function-class>eltag.MyTagLib</function-class>
     <function-signature>
     	boolean isNumber(java.lang.String)
-    </function-signature>
+    </function-signature>    
   </function>
   
-   <function>
+  <function>    
     <name>getGender</name>
     <function-class>eltag.MyTagLib</function-class>
     <function-signature>
     	java.lang.String getGender(java.lang.String)
-    </function-signature>
+    </function-signature>    
   </function>
   
   <function>    
@@ -31,17 +31,14 @@
     <function-signature>
     	boolean isMember(javax.servlet.ServletContext,java.lang.String,java.lang.String)
     </function-signature>    
-  </function
+  </function>
   
-  ><function>    
+  <function>    
     <name>selectList</name>
     <function-class>eltag.MyTagLib</function-class>
     <function-signature>
-    	java.util.List selectList(javax.servlet.ServletContext,int,int)
+    	java.util.List selectList(javax.servlet.ServletContext,int ,int)
     </function-signature>    
   </function>
   
-  
-  
-  
- </taglib>
+</taglib>
