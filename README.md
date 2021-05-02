@@ -269,7 +269,8 @@
 	6] DAO객체 닫기
 	
     3. 목록 창 만들기 (List)
-    	1] DAO객체 연결하기 (List.jsp)
+    	
+	1] DAO객체 연결하기 (List.jsp)
 	
 	2] 모든 DAO객체 불러오는 <DTO>타입의 List 컬렉션 매서드 생성 (BBSDao.java)
 	
