@@ -10,7 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
+import javax.sql.DataSource;
 
 /*
  * DAO(Data Access Object):데이타에 접근해서 CRUD작업을
@@ -24,6 +28,7 @@ public class BBSDao {
 	private PreparedStatement psmt;
 	//[생성자]
 	public BBSDao(ServletContext context,String user,String password) {
+		/*
 		try {
 			//드라이버 로딩]
 			Class.forName(context.getInitParameter("ORACLE_DRIVER"));
@@ -31,7 +36,17 @@ public class BBSDao {
 			conn = DriverManager.getConnection(context.getInitParameter("ORACLE_URL"), user, password);
 			System.out.println("데이타 베이스 연결 성공");
 		}
-		catch(ClassNotFoundException | SQLException e) {e.printStackTrace();}
+		catch(ClassNotFoundException | SQLException e) {e.printStackTrace();}*/
+		//커넥션풀 사용하기]
+		try {
+			Context ctx =new InitialContext();
+			DataSource source =(DataSource)ctx.lookup(context.getInitParameter("JNDI_ROOT")+"/myjsp");
+			conn=source.getConnection();
+		}
+		catch(NamingException | SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}/////////
 	//자원반납용]
 	public void close() {
@@ -70,15 +85,13 @@ public class BBSDao {
 		List<BBSDto> list = new Vector<BBSDto>();
 		//페이징 적용 前 쿼리- 전체 쿼리
 		//String sql ="SELECT b.*,name FROM bbs b JOIN member m ON b.id = m.id ORDER BY no DESC ";
+		//페이징 적용-구간쿼리로 변경
+		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT b.*,name FROM bbs b JOIN member m ON b.id = m.id ";
+		//검색시	
+		if(map.get("searchColumn") !=null) {
+			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";		}
 		
-		//페이징 적용 - 구간 쿼리로 변경
-		String sql="Select * from (Select T.*,ROWNUM R From (SELECT b.*,name FROM bbs b JOIN member m ON b.id = m.id ";
-		
-		//검색 시
-		if(map.get("searchColumn") != null) 
-			sql+=" WHERE "+map.get("searchColumn") + " LIKE '%"+map.get("searchWord")+"%' ";
-		
-		sql += " ORDER BY no DESC) T ) where R between ? and ?";
+		sql+= " ORDER BY no DESC) T) WHERE R BETWEEN ? AND ?";
 		
 		
 		try {
@@ -87,8 +100,10 @@ public class BBSDao {
 			//페이징을 위한 시작 및 종료 rownum설정]
 			psmt.setString(1, map.get("start").toString());
 			psmt.setString(2, map.get("end").toString());
-
+			
+			
 			rs = psmt.executeQuery();
+			
 			while(rs.next()) {
 				BBSDto dto = new BBSDto();
 				dto.setContent(rs.getString(4));
@@ -107,10 +122,10 @@ public class BBSDao {
 	//총 레코드 수 얻기용]
 	public int getTotalRowCount(Map map) {
 		int totalRowCount=0;
-		//String sql = "Select count(*) From bbs";
-		String sql = "Select Count(*) from bbs b Join member m ON b.id=m.id";
-		if(map.get("searchColumn") != null) 
-			sql+=" WHERE "+map.get("searchColumn") + " LIKE '%"+map.get("searchWord")+"%' ";
+		//String sql="SELECT COUNT(*) FROM bbs";
+		String sql ="SELECT COUNT(*) FROM bbs b JOIN member m ON m.id=b.id ";
+		if(map.get("searchColumn") !=null) 
+			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";		
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -118,11 +133,10 @@ public class BBSDao {
 			rs.next();
 			totalRowCount = rs.getInt(1);
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
+		catch(SQLException e) {e.printStackTrace();}
+		
 		return totalRowCount;
-	}
+	}////////////////getTotalRowCount
 	
 	//입력용]
 	public int insert(BBSDto dto) {
@@ -134,19 +148,19 @@ public class BBSDao {
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContent());
 			affected = psmt.executeUpdate();
+			
 		}
 		catch(SQLException e) {e.printStackTrace();}
 		return affected;
 	}/////////
 	
 	public BBSDto selectOne(String no,String prevPage) {
-		
 		BBSDto dto=null;
 		try {
 			conn.setAutoCommit(false);
 			String sql;
 			//목록에서 넘어온 경우에만 조회수 증가
-			if(prevPage.toUpperCase().indexOf("List.JSP")!=-1){
+			if(prevPage.toUpperCase().indexOf("LIST.JSP") !=-1){
 				//조회 수 업데이트
 				sql="UPDATE bbs SET visitcount = visitcount+1 WHERE no=?";
 				psmt=conn.prepareStatement(sql);
@@ -175,9 +189,10 @@ public class BBSDao {
 			try {
 				conn.rollback();
 			} 
-			catch (SQLException e1) {e1.printStackTrace();}
+			catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
-		
 		return dto;
 	}/////////////selectOne
 	
@@ -216,6 +231,7 @@ public class BBSDao {
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			affected = psmt.executeUpdate();
+			
 		}
 		catch(SQLException e) {e.printStackTrace();}
 		return affected;
