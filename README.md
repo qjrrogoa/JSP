@@ -252,73 +252,79 @@
     DTO : 데이터를 전송하는 객체로 테이블의 레코드 하나를 저장할 수 있는 자료구조 (BBSDto.java)
     DAO : 데이터에 접근해서 CRUD작업을 수행하는 업무처리 로직을 갖고 있는 객체 (BBSDao.java)
     
-    2. 회원 여부 파악하기
+    게시판
 
-	1] 사용자 입력 값 받기 
-	- request.getParameter로 값을 받아옴
-	
-	2] DAO객체 연결하기 (LoginProcess.jsp)
-	
-	3] DAO객체로 user, pass매개변수 받아 boolean반환하는 메서드 만들기 (LoginProcess.jsp)
-	- 파라미터로 받아온 변수를 매개변수에 넣는다.
-	
-	4] true면 세션에 ID 저장해주고 MyPage.jsp로 이동
-	
-	5] 실패 시 아이디와 비번 불일치 표시 해주고, 로그인 페이지로 포워드 (Login.jsp)
-	
-	6] DAO객체 닫기
-	
-    3. 목록 창 만들기 (List)
-    	
-	1] DAO객체 연결하기 (List.jsp)
-	
-	2] 모든 DAO객체 불러오는 <DTO>타입의 List 컬렉션 매서드 생성 (BBSDao.java)
-	
-	3] 메서드 호출 (List.jsp)
-	
-	4] Html문에 스크립팅 요소 사용하여 값 대입
-	
-	5] DAO객체 닫기
-	
-    4. 글작성
-	1] 글 작성 글자에 a태그 걸어주기 (List.jsp)
-	
-	2] 제목과 내용을 request.parameter값으로 변수에 담는다. (WriteOk.jsp)
-	
-	3] 변수를 dto객체를 인스턴스 할 때 생성자에 변수를 담는다. (WriteOk.jsp)
-	
-	4] dao객체 연결 후 dto를 매개변수 받고 int 반환하는 메서드 (List.jsp)
-	- executeUpdate() 메서드 즉 DB에 저장하는 메서드다!!
+	 HTML다 주어진다고 가정
 
-	5] 메서드 호출 한다.
-	- 성공시 List.jsp 호출,
-	- 실패시 실패했다는 안내와 history.back();
-	
-	
-    5. 글 상세보기 페이지 만들기 (View) (조회수 얻기 같이,,)
+	1. 회원 로그인
 
-	1] 목록창에서 글 주제를 클릭하면 상세 페이지 이동
-	- no를 쿼리스트링 값으로 넘겨준다.
+	1-1. BBSDao
+	isMember()메서드 생성
 
-	2] 
-   
-    
-    6. 이전글 다음글
+	1-2. LoginProcess
+	user와 pass값 받아서
 
-    7. 수정
+	dao객체 생성
+	isMember메서드 사용
+	dao객체 닫기
 
-	1] 필요한 요소 파라미터 얻어오기 (EditOk.jsp)
-	
-	2] dto 객체 생성 (생성자로는 필요한 값만 넣어주고 나머지는 null)
-	- no, title, content
+	true 
+	session값에 아이디 저장
+	MyPage로 보냄
 
-	3] dao 객체 연결 후 dto를 매개변수 받고 int 반환하는 매서드 생성 (List.jsp)
-	
-	4] 메서드 호출
-	- 성공시 View.jsp 호출
+	false 
+	경고창 띄어주고
+	login페이지로 보냄
 
-    8.
+	1-3. MyPage
+	아이디값 받아서 화면 보여주기
 
+	1-4. IsMember
+	(List홈페이지에 IsMember 홈페이지 include되어 있다.)
+	게시판 눌렀을 때 멤버인지 확인
+	로그인 되어있으면 List홈페이지 이동
+	로그인 안되어있으면 경고창 띄운 후 Login페이지로 이동
+
+	1-5 Logout
+	세션으로 값 다 지워주고
+	Login홈페지로 이동
+
+
+
+	2. 전체 글 가져오기
+
+	2-1 BBSDao
+	SelectList() 메서드 만들기
+
+	2-2 List
+	dao 객체생성
+	SelectList() 메서드 
+	dao객체 닫기
+
+	SelectList로 값이 없으면 등록된 글 없다고 알려주고
+	있으면 값 넣어주기
+
+
+	3. 글 작성
+
+	3-1 BBSDao
+	Insert()메서드 만들기
+
+	3-2 WriteOk
+	타이틀,컨텐츠파라미터로 받고
+	아이디 세션에 저장된 값 받고
+	dto객체 생성
+	dao객체 생성
+	insert()메서드
+	dao객체 닫기
+
+	affected가 1이면 
+	list로 
+
+	0이면
+	입력 실패띄우기
+
+	4. 뷰
 페이징 방법
 	
 	1. ㅇ
