@@ -3,64 +3,63 @@
   <display-name>JSPProj</display-name>
   <!-- 서블릿 등록 -->
   <servlet>
-  	<servlet-name>SERVLET_HELLO</servlet-name>
-  	<servlet-class>controller.HelloServlet</servlet-class>
+     <servlet-name>SERVLET_HELLO</servlet-name>
+     <servlet-class>controller.HelloServlet</servlet-class>
   </servlet>
   <!--요청 URL매핑 -->
   <servlet-mapping>
-  	<servlet-name>SERVLET_HELLO</servlet-name>
-  	<url-pattern>/HelloServlet.do</url-pattern>
+     <servlet-name>SERVLET_HELLO</servlet-name>
+     <url-pattern>/HelloServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>CALCULATOR</servlet-name>
-  	<servlet-class>controller.CalculatorServlet</servlet-class>  	
+     <servlet-name>CALCULATOR</servlet-name>
+     <servlet-class>controller.CalculatorServlet</servlet-class>     
   </servlet>
   <servlet-mapping>
-  	<servlet-name>CALCULATOR</servlet-name>
-  	<url-pattern>/Calculator.kosmo</url-pattern>
+     <servlet-name>CALCULATOR</servlet-name>
+     <url-pattern>/Calculator.kosmo</url-pattern>
   </servlet-mapping>
  
   <servlet>
-  	<servlet-name>CONTENT_TYPE</servlet-name>
-  	<servlet-class>controller.ContentTypeServlet</servlet-class>
+     <servlet-name>CONTENT_TYPE</servlet-name>
+     <servlet-class>controller.ContentTypeServlet</servlet-class>
   </servlet>  
   <servlet-mapping>
-  	<servlet-name>CONTENT_TYPE</servlet-name>
-  	<url-pattern>/AniDir/SomeDir/SetContentType.kosmo</url-pattern>
+     <servlet-name>CONTENT_TYPE</servlet-name>
+     <url-pattern>/AniDir/SomeDir/SetContentType.kosmo</url-pattern>
   </servlet-mapping>
   <!-- 컨텍스트 초기화 파라미터 등록 -->
   <context-param>
-  	<param-name>ORACLE_URL</param-name>
-  	<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+     <param-name>ORACLE_URL</param-name>
+     <param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
   </context-param>
   <context-param>
-  	<param-name>ORACLE_DRIVER</param-name>
-  	<param-value>oracle.jdbc.OracleDriver</param-value>  
+     <param-name>ORACLE_DRIVER</param-name>
+     <param-value>oracle.jdbc.OracleDriver</param-value>  
   </context-param>
   <!-- 해당 JSP페이지에서만 사용가능한 서블릿 초기화 파라미터 등록 (효용도 떨어짐) -->
   <servlet>
-  	<servlet-name>APPLICATION01_JSP</servlet-name>
-  	<jsp-file>/InnerObject03/Application01.jsp</jsp-file>
-  	<init-param>
-  		<param-name>SERVLET_INIT</param-name>
-  		<param-value>서블릿 초기화 파리미터 입니다</param-value>
-  	</init-param>
+     <servlet-name>APPLICATION01_JSP</servlet-name>
+     <jsp-file>/InnerObject03/Application01.jsp</jsp-file>
+     <init-param>
+        <param-name>SERVLET_INIT</param-name>
+        <param-value>서블릿 초기화 파리미터 입니다</param-value>
+     </init-param>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>APPLICATION01_JSP</servlet-name>
-  	<url-pattern>/InnerObject03/Application01.jsp</url-pattern>
+     <servlet-name>APPLICATION01_JSP</servlet-name>
+     <url-pattern>/InnerObject03/Application01.jsp</url-pattern>
   </servlet-mapping>
-  <!-- 회원제 게시판 페이징관련 컨텍스트 초기화 파라미터-->
+  <!-- 회원제 게시판 페이징관련 컨텍스트 초기화 파라미터 -->
   <context-param>
-  	<param-name>PAGE_SIZE</param-name>
-  	<param-value>2</param-value>
+     <param-name>PAGE_SIZE</param-name>
+     <param-value>2</param-value>
   </context-param>
-  <context-param>
-  	<param-name>BLOCK_PAGE</param-name>
-  	<param-value>3</param-value>
+   <context-param>
+     <param-name>BLOCK_PAGE</param-name>
+     <param-value>3</param-value>
   </context-param>
-  
   
   <!-- 세션의 유효시간 설정(분단위) -->
   <session-config>
@@ -68,25 +67,103 @@
   </session-config>
   
   <jsp-config>
-  	<taglib>
-  		<taglib-uri>
-  			/WEB-INF/tlds/mytag.tld
-  		</taglib-uri>
-  		<taglib-location>
-  			/WEB-INF/tlds/mytag.tld
-  		</taglib-location>
-  	</taglib>  
+     <taglib>
+        <taglib-uri>
+           /WEB-INF/tlds/mytag.tld
+        </taglib-uri>
+        <taglib-location>
+             /WEB-INF/tlds/mytag.tld
+        </taglib-location>
+     </taglib>
   </jsp-config>
   
-  <!-- 커넥션 풀 사용하기 위한 JNDI 루트 등록 -->
+  <!--  커넥션 풀 사용하기 위한 JNDI루트 등록 -->
   <context-param>
-  
-  	<param-name>JNDI_ROOT</param-name>
-  	<param-value>java:comp/env</param-value>
+     <param-name>JNDI_ROOT</param-name>
+     <param-value>java:comp/env</param-value>
   </context-param>
   
+  <!-- 서블릿 연습하기 -->
+  <servlet>
+     <!-- 서블릿 명 : 임의로 지정 -->
+     <servlet-name>GET_SERVLET</servlet-name>
+   <!-- 서블릿 클래스의 패키지를 포함한 경로 -->
+   <servlet-class>controller.servlet.GetController</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>GET_SERVLET</servlet-name>
+     <!-- 사용자 요청 URL패턴 : 반드시 / 로 시작하는 패턴 ; 디렉토리구조와 무관 -->
+     <url-pattern>/Basic/get.kosmo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <!-- 서블릿 명 : 임의로 지정 -->
+     <servlet-name>POST_SERVLET</servlet-name>
+   <!-- 서블릿 클래스의 패키지를 포함한 경로 -->
+   <servlet-class>controller.servlet.PostController</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>POST_SERVLET</servlet-name>
+     <!-- 사용자 요청 URL패턴 : 반드시 / 로 시작하는 패턴 ; 디렉토리구조와 무관 -->
+     <url-pattern>/Basic/post.kosmo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <!-- 서블릿 명 : 임의로 지정 -->
+     <servlet-name>BOTH_SERVLET</servlet-name>
+   <!-- 서블릿 클래스의 패키지를 포함한 경로 -->
+   <servlet-class>controller.servlet.BothController</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>BOTH_SERVLET</servlet-name>
+     <!-- 사용자 요청 URL패턴 : 반드시 / 로 시작하는 패턴 ; 디렉토리구조와 무관 -->
+     <url-pattern>/Basic/both.kosmo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <!-- 서블릿 명 : 임의로 지정 -->
+     <servlet-name>MULTI_SERVLET</servlet-name>
+   <!-- 서블릿 클래스의 패키지를 포함한 경로 -->
+   <servlet-class>controller.servlet.MultiController</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>MULTI_SERVLET</servlet-name>
+     <!-- 사용자 요청 URL패턴 : 반드시 / 로 시작하는 패턴 ; 디렉토리구조와 무관 -->
+     <url-pattern>/Basic/multi.kosmo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <!-- 서블릿 명 : 임의로 지정 -->
+     <servlet-name>FIRST_SERVLET</servlet-name>
+   <!-- 서블릿 클래스의 패키지를 포함한 경로 -->
+   <servlet-class>controller.servlet.FirstController</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>FIRST_SERVLET</servlet-name>
+     <!-- 사용자 요청 URL패턴 : 반드시 / 로 시작하는 패턴 ; 디렉토리구조와 무관 -->
+     <url-pattern>/Basic/first.kosmo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <!-- 서블릿 명 : 임의로 지정 -->
+     <servlet-name>SECOND_SERVLET</servlet-name>
+   <!-- 서블릿 클래스의 패키지를 포함한 경로 -->
+   <servlet-class>controller.servlet.SecondController</servlet-class>  
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>SECOND_SERVLET</servlet-name>
+     <!-- 사용자 요청 URL패턴 : 반드시 / 로 시작하는 패턴 ; 디렉토리구조와 무관 -->
+     <url-pattern>/Basic/second.kosmo</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
-  	<welcome-file>HelloWorld.jsp</welcome-file>
+     <welcome-file>HelloWorld.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>

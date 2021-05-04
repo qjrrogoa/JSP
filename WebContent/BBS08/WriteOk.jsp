@@ -16,6 +16,7 @@
 	//4]CRUD작업용 DAO계열 객체 생성
 	BBSDao dao = new BBSDao(application,"JSP","JSP");
 	int affected=dao.insert(dto);
+	dao.close();
 	if(affected ==1){
 		response.sendRedirect("List.jsp");
 	}
