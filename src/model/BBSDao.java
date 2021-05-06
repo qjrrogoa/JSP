@@ -127,6 +127,8 @@ public class BBSDao {
 		if(map.get("searchColumn") !=null) 
 			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";		
 		
+		
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -155,6 +157,7 @@ public class BBSDao {
 	}/////////
 	
 	public BBSDto selectOne(String no,String prevPage) {
+		
 		BBSDto dto=null;
 		try {
 			conn.setAutoCommit(false);
@@ -181,18 +184,19 @@ public class BBSDao {
 				dto.setTitle(rs.getString(3));
 				dto.setVisitCount(rs.getString(5));
 				dto.setName(rs.getString(7));
+				
 			}
 			conn.commit();
+			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			try {
 				conn.rollback();
 			} 
-			catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+			catch (SQLException e1) {e1.printStackTrace();}
 		}
+		
 		return dto;
 	}/////////////selectOne
 	

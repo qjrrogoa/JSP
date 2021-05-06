@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/Common/IsMember.jsp"%>
 <%
+
 	//1]파라미터(키값) 받기
 	String no = request.getParameter("no");
 	//현재 페이지번호 받기
@@ -18,6 +19,7 @@
 		queryString=String.format("searchColumn=%s&searchWord=%s&", searchColumn,searchWord);
 	}//////////////
 			
+
 	//2]CRUD작업용 BbsDAO생성
 	BBSDao dao = new BBSDao(application,"JSP","JSP");
 	//이전 페이지명 얻기:List.jsp에서 뷰로 올때만 조회수 증가 하기 위함

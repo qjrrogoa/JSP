@@ -8,11 +8,11 @@
 <title>Form.jsp</title>
 </head>
 <body>
-   <fieldset>
-      <legend>FirstController에서 포워드된 페이지</legend>
-      <form action="<c:url value="/Basic/second.kosmo"/>" method="post">
-         <input type="submit" value="POST전송"/>
-      </form>
-   </fieldset>
+	<fieldset>
+		<legend>FirstController에서 포워드된 페이지</legend>
+		<form action="<c:url value="/Basic/second.kosmo"/>" method="post">
+			<input type="submit" value="POST전송"/>
+		</form>
+	</fieldset>
 </body>
 </html>
