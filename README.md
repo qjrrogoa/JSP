@@ -814,9 +814,28 @@
 	//주로 패턴을 사용한다
 	<fmt:formatDate value="${today}" pattern="yyyy년 MM월 DD일 a HH:mm:ss"/>
 	
-	
-	
+# DBCP11
 
+1] Upload	
+---
+	MultipartRequest객체
+	MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
+	1] 업로드할 서버의 물리적 디렉토리 설정
+		String saveDirectory=application.getRealPath("/Upload");
+	2] 업로드 최대 파일 용량 설정
+		int maxPostSize = 500 * 1024;
+	3] 인코딩 타입 설정
+		String encoding = "UTF-8";
+	4] 파일명이 중복된 경우 파일명을 재정의 하도록 FileRenamePolicy객체 얻기 (인덱스가 자동으로 부여됨)
+		FileRenamepolicy policy = new DefaultFileRenamePolicy();
+	5] 객체 생성
+		mr = new MultipartRequest(request,saveDirectory,maxPostSize,encoding,policy);
+	
+	MultipartRequest 내장 메서드
+	.getOriginalFileName : 원본 파일명
+	.getFilesystemName : 실제 저장된 파일 명
+	.getContentType("파일 변수") : 컨텐츠 타입
+	.length : 파일 크기
 # Servlet13
 
 	모델 1 방식
