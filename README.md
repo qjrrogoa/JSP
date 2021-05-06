@@ -816,17 +816,16 @@
 	
 	
 	
-	
-	
-# 서블릿
-	
-모델 1 방식
-요청 응답을 jsp가 받는다.
-개발 생산성이 높다.
 
-모델 2식방
-요청은 서블릿이 응답은 jsp(내부적으로 서블릿으로 변환)가 한다.
-유지보수가 좋다.
+# Servlet13
+
+	모델 1 방식
+	요청 응답을 jsp가 받는다.
+	개발 생산성이 높다.
+
+	모델 2 방식
+	요청은 서블릿이 응답은 jsp(내부적으로 서블릿으로 변환)가 한다.
+	유지보수가 좋다.
 
 	init() : 첫 방문자가 요청시 해당 클래스를 메모리에 로딩시 최초 수행됨
 	단, 한번만 수행된다.
@@ -834,7 +833,31 @@
 	service() : 스레드가 처리되는 메서드. 
 	
 	destroy() ㅣ 톰캣을 중지 할 때 딱 한번 실행됨.
+	
+	MVC모델 흐름
+	1. .JSP파일에서 a태그, form태그에서 .jsp파일이 아닌 Servlet주소로 이동
+	2. 서블릿 만들기 web.sml
+		<servlet>
+			<servlet-name>임의로 지정</servlet-name>
+			<servlet-class>control클래스</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>임의로 지정</servlet-name>
+			<url-pattern>.jsp에서 지정한 서블릿 주소(반드시/로 시작)</url-pattern>
+		</servlet-mapping>
+		
+	3. 컨트롤 클래스 작성
+		HttpServlet을 반드시 상속해야한다.
+		
+		3-1] get방식
+		doget Override
+
+
+			<url-pattern>.jsp에서 지정한 서블릿 주소</url-patterㅋ
+			<url-pattern>.jsp에서 지정한 서블릿 주소</url-pattern>
 ㅓㅂ
+
 ㅓㅂㅡ
 ㅓㅂㅡㄹ
 ㅓㅂㅡㄹ
