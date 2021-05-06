@@ -836,7 +836,11 @@
 	
 	MVC모델 흐름
 	1. .JSP파일에서 a태그, form태그에서 .jsp파일이 아닌 Servlet주소로 이동
-	2. 서블릿 만들기 web.sml
+		<a href="<c:url value=""/>"></a>
+		<form method="post" action="<c:url value=""/>">
+		<c:url>태그 사용하자.
+		
+	3. 서블릿 만들기 web.sml
 		<servlet>
 			<servlet-name>임의로 지정</servlet-name>
 			<servlet-class>control클래스</servlet-class>
@@ -852,7 +856,24 @@
 		
 		3-1] get방식
 		doget Override
+		req.setAttribute로 변수 할당
+		.jsp파일로 포워드
+		.jsp파일에서 EL로 값 불러오기
 
+		3-2] post방식
+		dopost Override
+		그 외 get 방식과 동일	
+		
+		3-3] get,post둘다 받기
+		
+		[1] Servise메서드 오버라이딩
+		setAttribute
+		.jsp파일로 포워드
+		.jsp파일에서 EL로 값 불러오기
+		
+		[2]한쪽으로 몰아주기
+		doget메서드에서 doPost(req,resp); 메서드 불러온다
+		dopost메서드에서 
 
 			<url-pattern>.jsp에서 지정한 서블릿 주소</url-patterㅋ
 			<url-pattern>.jsp에서 지정한 서블릿 주소</url-pattern>
