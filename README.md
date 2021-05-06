@@ -873,12 +873,7 @@
 		
 		[2]한쪽으로 몰아주기
 		doget메서드에서 doPost(req,resp); 메서드 불러온다
-		dopost메서드에서 
-
-			<url-pattern>.jsp에서 지정한 서블릿 주소</url-patterㅋ
-			<url-pattern>.jsp에서 지정한 서블릿 주소</url-pattern>
-ㅓㅂ
-
-ㅓㅂㅡ
-ㅓㅂㅡㄹ
-ㅓㅂㅡㄹ
+		dopost메서드 
+		setAttribute
+		.jsp파일로 포워드
+		.jsp파일에서 EL로 값 불러오기
