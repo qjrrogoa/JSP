@@ -32,7 +32,7 @@
 		<div class="jumbotron">
 			<h1>
 				자료실<small>목록 페이지</small>
-			</h1>
+			</h1>			
 		</div>
 		<!-- 작성하기 버튼 -->
 		<div class="text-right">
@@ -58,13 +58,13 @@
 					</tr>
 				</c:if>
 				<c:if test="${not  isEmpty}">
-					<c:forEach var="item" items="${list}">
+					<c:forEach var="item" items="${list}" varStatus="loop">
 						<tr>
-							<td class="text-center col-md-1">${item.no}</td>
-							<td class="text-left">${item.title}</td>
+							<td class="text-center col-md-1">${totalRecordCount - (((nowPage - 1) * pageSize) + loop.index)}</td>
+							<td class="text-left"><a href="<c:url value="/DataRoom/View.kosmo?no=${item.no}&nowPage="/><c:out value='${param.nowPage}' default='1'/>">${item.title}</a></td>
 							<td class="text-center col-md-1">${item.name}</td>
-							<td class="text-center col-md-2">${item.attachFile}</td>
-							<td class="text-center col-md-1">${item.downCount }</td>
+							<td class="text-center col-md-2 attachfile"><a class="downfile${loop.count}" href="<c:url value="/DataRoom/Download.kosmo?filename=${item.attachFile}&no=${item.no }"/>">${item.attachFile}</a></td>
+							<td class="text-center col-md-1" id="downcount${loop.count}">${item.downCount }</td>
 							<td class="text-center col-md-2">${item.postDate }</td>
 						</tr>
 					</c:forEach>
@@ -73,7 +73,7 @@
 		</div>
 		<!-- 페이징 -->
 		<div class="text-center">
-			1 2 3 4 5 6 7 8 9 10
+			${pagingString}
 		</div>
 		
 	</div><!-- container -->
@@ -81,5 +81,15 @@
 	<!--  푸터 시작 -->
 	<jsp:include page="/Template/DataRoomFooter.jsp" />
 	<!-- 푸터 끝 -->
+	<script>
+		$('.attachfile a').click(function(){
+			var className=$(this).attr("class");
+			console.log(className.substring(8,className.length));
+			var numbering = className.substring(8,className.length);
+			var downcount = $('#downcount'+numbering).html();
+			$('#downcount'+numbering).html(parseInt(downcount)+1);
+		});
+	
+	</script>
 </body>
 </html>

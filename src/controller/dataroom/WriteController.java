@@ -41,6 +41,9 @@ public class WriteController extends HttpServlet {
 		//4]모델호출 및 결과값 받기
 		//파일 업로드와 관련된 모델(비지니스 로직) 호출
 		MultipartRequest mr= FileUtils.upload(req,req.getServletContext().getRealPath("/Upload"));
+		//DB입력 성공시에는 1,실패시 0, 파일용량 초과시에는 -1 저장
+		int successOrFail;
+		
 		if(mr !=null) {//파일 업로드 성공일때 DB 입력처리]
 			String name = mr.getParameter("name");
 			String title = mr.getParameter("title");
@@ -55,7 +58,7 @@ public class WriteController extends HttpServlet {
 			dto.setPassword(password);
 			dto.setName(name);
 			dto.setTitle(title);
-			int successOrFail=dao.insert(dto);
+			successOrFail=dao.insert(dto);
 			if(successOrFail ==0) {//데이터 입력 실패시 업로된 파일 삭제
 				//파일 삭제 로직 호출]
 				FileUtils.deleteFile(req,"/Upload",attachFile);
@@ -63,7 +66,17 @@ public class WriteController extends HttpServlet {
 			dao.close();
 		}
 		else {//파일 용량 초과시
-			
+			successOrFail = -1;
 		}
+		//5]리퀘스트 영역에 결과값 혹은 필요한 값 저장
+		req.setAttribute("SUCCFAIL",successOrFail);
+		//5-2]컨트롤러 구분용-입력:INS,수정:EDT,삭제:DEL
+		req.setAttribute("WHERE","INS");
+		
+		//[이동방법1]-바로 목록으로 이동:반드시 List.jsp가 아닌 List.kosmo로
+		//req.getRequestDispatcher("/DataRoom/List.kosmo").forward(req, resp);
+		//[이동방법2]-메시지 뿌려주는 jsp페이지로 이동후 목록으로 이동
+		req.getRequestDispatcher("/DataRoom14/Message.jsp").forward(req, resp);
+		
 	}/////////
 }

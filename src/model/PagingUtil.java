@@ -58,12 +58,12 @@ public class PagingUtil {
 		if(intTemp != 1){
 			pagingStr+="<li>\r\n" + 
 					"<a href='"+page+"nowPage=1'>\r\n" + 
-					"<span aria-hidden=\"true\">&laquo;</span>\r\n" + 
+					"<span >&laquo;</span>\r\n" + 
 					"</a>\r\n" + 
 					"</li>\r\n" + 
 					"<li >\r\n" + 
 					"<a href='"+page+"nowPage="+(intTemp -blockPage)+"' >\r\n" + 
-					"<span aria-hidden=\"true\">&lsaquo;</span>\r\n" + 
+					"<span >&lsaquo;</span>\r\n" + 
 					"</a>\r\n" + 
 					"</li>";   
 			
@@ -92,12 +92,12 @@ public class PagingUtil {
 		if(intTemp <= totalPage){
 			pagingStr+="<li>\r\n" + 
 					"<a href='"+page+"nowPage="+intTemp+"'>\r\n" + 
-					"<span aria-hidden=\"true\">&rsaquo;</span>\r\n" + 
+					"<span >&rsaquo;</span>\r\n" + 
 					"</a>\r\n" + 
 					"</li>\r\n" + 
 					"<li>\r\n" + 
 					"<a href='"+page+"nowPage="+totalPage+"' >\r\n" + 
-					"<span aria-hidden=\"true\">&raquo;</span>\r\n" + 
+					"<span >&raquo;</span>\r\n" + 
 					"</a>\r\n" + 
 					"</li>";
 							   

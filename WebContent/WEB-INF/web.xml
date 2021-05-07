@@ -171,6 +171,15 @@
   <servlet>
   	<servlet-name>DataRoomList</servlet-name>
   	<servlet-class>controller.dataroom.ListController</servlet-class>
+  	<!-- ListController의 서블릿 초기화 파라미터 -->
+  	<init-param>
+  		<param-name>PAGE_SIZE</param-name>
+  		<param-value>2</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>BLOCK_PAGE</param-name>
+  		<param-value>2</param-value>
+  	</init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>DataRoomList</servlet-name>
@@ -186,7 +195,42 @@
   	<url-pattern>/DataRoom/Write.kosmo</url-pattern>
   </servlet-mapping>
   
-  
+  <!-- 상세보기용 -->
+  <servlet>
+  	<servlet-name>DataRoomView</servlet-name>
+  	<servlet-class>controller.dataroom.ViewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomView</servlet-name>
+  	<url-pattern>/DataRoom/View.kosmo</url-pattern>
+  </servlet-mapping>
+  <!-- 패스워드 체크용 -->
+  <servlet>
+  	<servlet-name>DataRoomPassword</servlet-name>
+  	<servlet-class>controller.dataroom.PasswordController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomPassword</servlet-name>
+  	<url-pattern>/DataRoom/Password.kosmo</url-pattern>
+  </servlet-mapping>
+  <!-- 하나의 컨트롤러 수정폼으로 이동 및 수정처리 요청을 처리 -->
+  <servlet>
+  	<servlet-name>DataRoomEdit</servlet-name>
+  	<servlet-class>controller.dataroom.EditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomEdit</servlet-name>
+  	<url-pattern>/DataRoom/Edit.kosmo</url-pattern>
+  </servlet-mapping>
+  <!-- 다운로드 요청 처리용 -->
+  <servlet>
+  	<servlet-name>DataRoomDownload</servlet-name>
+  	<servlet-class>controller.dataroom.DownloadController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DataRoomDownload</servlet-name>
+  	<url-pattern>/DataRoom/Download.kosmo</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
   	<welcome-file>index.jsp</welcome-file>

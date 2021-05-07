@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-<title>Write.jsp</title>
+<title>Edit.jsp</title>
 
 <!-- 부트스트랩 -->
 <link rel="stylesheet"
@@ -30,34 +30,37 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1>
-				자료실<small>등록 페이지</small>
+				자료실<small>수정 페이지</small>
 			</h1>
 		</div>
 		<div>
-			<form id="myform" class="form-horizontal" method="post" enctype="multipart/form-data" action="<c:url value="/DataRoom/Write.kosmo"/>">
+			<form id="myform" class="form-horizontal" method="post" enctype="multipart/form-data" action="<c:url value="/DataRoom/Edit.kosmo"/>">
+				<input type="hidden" name="no" value="${dto.no }"/>
+				<input type="hidden" name="originalFilename" value="${dto.attachFile}"/>
+				<input type="hidden" name="nowPage" value="${param.nowPage}"/>
 				<div class="form-group">					
 					<label class="col-sm-2 control-label">작성자</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" name="name" placeholder="이름을 입력하세요?">
+						<input type="text" class="form-control" name="name" placeholder="이름을 입력하세요?" value="${dto.name }">
 					</div>
 				</div>
 				<div class="form-group">					
 					<label class="col-sm-2 control-label">제 목</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" name="title" placeholder="제목을 입력하세요?">
+						<input type="text" class="form-control" name="title" placeholder="제목을 입력하세요?" value="${dto.title}">
 					</div>
 				</div>
 				<div class="form-group">				
 					<label class="col-sm-2 control-label">파일 업로드</label>
 					<div class="col-sm-8">
 						<input type="file" name="attachFile">
-						<p class="help-block">파일을 첨부하세요</p>
+						<p class="help-block">파일을 첨부하세요(기존 첨부 파일:${dto.attachFile})</p>
 					</div>
 				</div>				
 				<div class="form-group">					
 					<label class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-4">
-						<input type="password" class="form-control" name="password" placeholder="비밀번호를 입력하세요">
+						<input type="password" class="form-control" name="password" placeholder="비밀번호를 입력하세요" value="${dto.password}">
 					</div>
 				</div>
 				
@@ -67,7 +70,7 @@
 					<div class="col-sm-10">
 						<div class="row">
 							<div class="col-sm-8">
-								<textarea rows="5" class="form-control" name="content" placeholder="내용을 입력하세요"></textarea>
+								<textarea rows="5" class="form-control" name="content" placeholder="내용을 입력하세요">${dto.content}</textarea>
 							</div>
 						</div>
 					</div>
@@ -75,7 +78,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-4">
-						<button  class="btn btn-primary">등록</button>
+						<button  class="btn btn-primary">수정</button>
 					</div>
 				</div>
 			</form>
@@ -138,28 +141,7 @@
 					$('#small-modal').modal('show');
 					focusObject= $(this).get(0).title;
 					return false;
-				}
-				if(fileObj.value==""){		
-					
-					$('#warningMessage').html("파일을 첨부하세요");
-					$('#small-modal').modal('show');
-					focusObject= $(this).get(0).attachFile;
-					return false;
-				}
-				/*
-				else{//파일을 첨부한 경우:파일 업로드 최대 용량 체크
-					//파일관련 정보 자스로 얻기					
-					console.log("파일 크기:",fileObj.files[0].size);
-					console.log("파일명:",fileObj.files[0].name);
-					console.log("컨텐츠 타입(MIME):",fileObj.files[0].type);
-					if(fileObj.files[0].size > 500 *1024){
-						$('#warningMessage').html("업로드 최대용량(500KB)을 초과 했어요");
-						$('#small-modal').modal('show');
-						focusObject= fileObj;
-						return false;						
-					}
-					
-				}*/
+				}			
 				
 				if($('input[type=password]').val()==""){
 					$('#warningMessage').html("비밀번호를 입력하세요");
