@@ -231,6 +231,17 @@
   	<servlet-name>DataRoomDownload</servlet-name>
   	<url-pattern>/DataRoom/Download.kosmo</url-pattern>
   </servlet-mapping>
+  <!-- 설정을 통한 예외처리 -->
+  <!-- 방법1]에러코드로 -->
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/Error15/ErrorCode.jsp</location>
+  </error-page>
+  <!-- 방법2]예외 클래스로 -->
+  <error-page>
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<location>/Error15/ErrorType.jsp</location>
+  </error-page>
   
   <welcome-file-list>
   	<welcome-file>index.jsp</welcome-file>

@@ -8,8 +8,8 @@
 </head>
 <body>
 	<fieldset>
-		<legend>에러 클래스(NullPointerException)로 예외처리</legend>
-		<h2>관리자에게 문의하세요.</h2>
+		<legend>예외 클래스(NullPointerException)로 예외처리</legend>
+		<h2>관리자에게 문의하세요</h2>
 		<h4>연락처:010-1234-5678</h4>
 	</fieldset>
 </body>

@@ -17,6 +17,9 @@ public class EditController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		
 		System.out.println("요청방식:"+req.getMethod());
 		System.out.println("모드 파라미터:"+req.getParameter("mode"));
 		
