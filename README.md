@@ -574,7 +574,7 @@
 	
 	2] set태그로 자바빈 객체 설정
 	<c:set var="defaultmember" value="<%= new MemberDTO()" scope="request" %>/>
-	<c:set va="argsmember" value="<%= new MemberDTO("KIM","1234","김길동",null,null) %> scope="request"/>
+	<c:set var="argsmember" value="<%= new MemberDTO("KIM","1234","김길동",null,null) %> scope="request"/>
 	
 	//EL로 출력
 	<li> 아이디 : ${defaultmember.id} </li>
